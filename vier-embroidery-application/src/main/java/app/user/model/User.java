@@ -1,9 +1,14 @@
 package app.user.model;
 
+import app.order.model.Order;
+import app.paymentCard.model.PaymentCard;
+import app.product.model.Product;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Builder
@@ -37,13 +42,9 @@ public class User {
     @Column(name = "created_on", nullable = false)
     private LocalDateTime createdOn;
 
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Order> orders = new ArrayList<>();
-//
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<PaymentCard> paymentCards = new ArrayList<>();
-//
-//    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Product> products = new ArrayList<>();
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Order> orders = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<PaymentCard> paymentCards = new ArrayList<>();
 }

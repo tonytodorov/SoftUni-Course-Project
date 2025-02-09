@@ -1,11 +1,13 @@
 package app.category.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import app.product.model.Product;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @Builder
 @Getter
@@ -17,10 +19,10 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private Long id;
+    private UUID id;
 
     private String name;
 
-//    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Product> products = new ArrayList<>();
+    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
+    private List<Product> products = new ArrayList<>();
 }

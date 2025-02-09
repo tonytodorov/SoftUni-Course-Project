@@ -1,5 +1,7 @@
 package app.paymentCard.model;
 
+import app.order.model.Order;
+import app.user.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,10 +29,6 @@ public class PaymentCard {
     @Column
     private LocalDateTime expiryDate;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User user;
-//
-//    @OneToOne(mappedBy = "paymentCard")
-//    private Order order;
+    @ManyToOne
+    private User user;
 }

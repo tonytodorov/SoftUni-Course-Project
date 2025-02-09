@@ -1,8 +1,13 @@
 package app.product.model;
 
+import app.category.model.Category;
+import app.order.model.Order;
+import app.user.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Builder
@@ -29,14 +34,9 @@ public class Product {
     @Column(nullable = false)
     private String imageUrl;
 
-//    @ManyToOne
-//    @JoinColumn(name = "category_id")
-//    private Category category;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "seller_id")
-//    private User seller;
-//
-//    @ManyToMany(mappedBy = "products")
-//    private List<Order> orders = new ArrayList<>();
+    @ManyToOne
+    private Category category;
+
+    @ManyToMany(mappedBy = "products")
+    private List<Order> orders = new ArrayList<>();
 }
