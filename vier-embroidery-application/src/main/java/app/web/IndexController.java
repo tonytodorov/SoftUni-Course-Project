@@ -13,7 +13,11 @@ public class IndexController {
 
     @GetMapping("/login")
     public String getLoginPage() {
-
         return "login";
+    }
+
+    @GetMapping("/register")
+    public String getRegisterPage() {
+        return "register";
     }
 }

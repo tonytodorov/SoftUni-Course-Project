@@ -1,0 +1,53 @@
+.login-container {
+    background-image: url('/images/background_4.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+form {
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 30px;
+    color: black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+h2 {
+    padding: 40px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    text-align: left;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    display: block;
+    background-color: #b8956f;
+    color: black;
+    padding: 10px 15px;
+    margin: 15px auto;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 35%;
+}
+
+.login-container p {
+    text-align: center;
+    margin: 0 auto;
+    padding: 45px;
+}
