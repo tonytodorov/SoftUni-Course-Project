@@ -2,10 +2,10 @@ package app.product.model;
 
 import app.category.model.Category;
 import app.order.model.Order;
-import app.user.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -29,7 +29,7 @@ public class Product {
     private String description;
 
     @Column(nullable = false)
-    private double price;
+    private BigDecimal price;
 
     @Column(nullable = false)
     private String imageUrl;
@@ -37,6 +37,6 @@ public class Product {
     @ManyToOne
     private Category category;
 
-    @ManyToMany(mappedBy = "products")
+    @ManyToMany(mappedBy = "products", fetch = FetchType.EAGER)
     private List<Order> orders = new ArrayList<>();
 }

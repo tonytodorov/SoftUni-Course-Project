@@ -26,7 +26,7 @@ public class PaymentCard {
     @Column(nullable = false)
     private String cardHolder;
 
-    @Column
+    @Column(nullable = false)
     private LocalDateTime expiryDate;
 
     @ManyToOne

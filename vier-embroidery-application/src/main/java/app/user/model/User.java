@@ -2,7 +2,6 @@ package app.user.model;
 
 import app.order.model.Order;
 import app.paymentCard.model.PaymentCard;
-import app.product.model.Product;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -39,7 +38,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
-    @Column(name = "created_on", nullable = false)
+    @Column(nullable = false)
     private LocalDateTime createdOn;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)

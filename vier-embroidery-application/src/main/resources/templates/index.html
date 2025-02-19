@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vier Embroidery</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<th:block th:insert="fragments/header :: header"></th:block>
+
+<main class="main-content">
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/}">Products</a></li>
+            <li><a th:href="@{/}">Contact</a></li>
+            <li><a th:href="@{/}">About us</a></li>
+        </ul>
+    </nav>
+
+    <section class="description">
+        <h2>Discover Beautiful Embroidery Designs</h2>
+        <p>Explore our handcrafted embroidery collections.</p>
+        <a th:href="@{/}" class="btn">Shop Now</a>
+        <!--    product.html-->
+    </section>
+
+    <section class="featured-products">
+        <h2>Featured Products</h2>
+        <div class="product-grid">
+            <div class="product">
+                <img src="https://static.bnr.bg/gallery/cr/e58fd3d1d290316a9f1796f16729c076.jpg"
+                     alt="Embroidery Design 1">
+                <h3>Bulgarian Traditional Shirt</h3>
+                <p>$25.00</p>
+                <a href="product-details.html" class="btn">View Details</a>
+            </div>
+            <div class="product">
+                <img src="https://i.etsystatic.com/16715571/r/il/f7616d/4559901266/il_fullxfull.4559901266_nehy.jpg"
+                     alt="Embroidery Design 2">
+                <h3>T-Shirt with Bulgarian Embroidery</h3>
+                <p>$30.00</p>
+                <a href="product-details.html" class="btn">View Details</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<th:block th:insert="fragments/footer :: footer"></th:block>
+
+</body>
+</html>
