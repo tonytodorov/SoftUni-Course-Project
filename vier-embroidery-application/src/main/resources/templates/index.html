@@ -11,19 +11,13 @@
 <th:block th:insert="fragments/header :: header"></th:block>
 
 <main class="main-content">
-    <nav>
-        <ul>
-            <li><a th:href="@{/}">Home</a></li>
-            <li><a th:href="@{/}">Products</a></li>
-            <li><a th:href="@{/}">Contact</a></li>
-            <li><a th:href="@{/}">About us</a></li>
-        </ul>
-    </nav>
+
+    <th:block th:insert="fragments/nav-bar :: nav-bar"></th:block>
 
     <section class="description">
         <h2>Discover Beautiful Embroidery Designs</h2>
         <p>Explore our handcrafted embroidery collections.</p>
-        <a th:href="@{/}" class="btn">Shop Now</a>
+        <a th:href="@{/products}" class="btn">Shop Now</a>
     </section>
 
     <section class="featured-products">

@@ -20,4 +20,19 @@ public class IndexController {
     public String getRegisterPage() {
         return "register";
     }
+
+    @GetMapping("/products")
+    public String getProductPage() {
+        return "products";
+    }
+
+    @GetMapping("/contact")
+    public String getContactPage() {
+        return "contact";
+    }
+
+    @GetMapping("/about-us")
+    public String getAboutPage() {
+        return "about-us";
+    }
 }
