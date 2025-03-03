@@ -43,6 +43,7 @@ body {
 }
 
 .auth-buttons a {
+    display: flex;
     color: #000000;
     font-size: 18px;
     text-decoration: none;
@@ -134,4 +135,9 @@ nav a {
     padding: 20px;
     background-color: #b8956f;
     color: #000000;
+}
+
+.top-bar img {
+    width: 30px;
+    height: 30px;
 }
