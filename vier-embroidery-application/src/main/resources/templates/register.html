@@ -15,19 +15,19 @@
 
 <main class="login-container">
 
-    <h2>Register</h2>
+    <h2>Регистрация</h2>
 
     <form action="/register" method="POST">
-        <label for="username">Username:</label>
+        <label for="username">Потребителско име:</label>
         <input type="text" id="username" name="username" required>
 
-        <label for="password">Password:</label>
+        <label for="password">Парола:</label>
         <input type="password" id="password" name="password" required>
 
-        <button type="submit" class="btn">Register</button>
+        <button type="submit" class="btn">Регистрация</button>
     </form>
 
-    <p>Already have an account? <a th:href="@{/login}">Login here</a></p>
+    <p>Вече имате акаунт? <a th:href="@{/login}">Влезте тук</a></p>
 
 </main>
 

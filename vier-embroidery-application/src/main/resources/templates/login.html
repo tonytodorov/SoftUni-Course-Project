@@ -14,19 +14,19 @@
 
 <main class="login-container">
 
-    <h2>Login</h2>
+    <h2>Логин</h2>
 
     <form action="/login" method="POST">
-        <label for="username">Username:</label>
+        <label for="username">Потребителско име:</label>
         <input type="text" id="username" name="username" required>
 
-        <label for="password">Password:</label>
+        <label for="password">Парола:</label>
         <input type="password" id="password" name="password" required>
 
-        <button type="submit" class="btn">Login</button>
+        <button type="submit" class="btn">Вход</button>
     </form>
 
-    <p>Don't have an account? <a th:href="@{/register}">Register here</a></p>
+    <p>Нямате акаунт? <a th:href="@{/register}">Регистрирайте се тук</a></p>
 
 </main>
 

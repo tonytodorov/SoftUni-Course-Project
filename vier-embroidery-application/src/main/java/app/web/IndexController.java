@@ -21,9 +21,19 @@ public class IndexController {
         return "register";
     }
 
-    @GetMapping("/products")
-    public String getProductPage() {
-        return "products";
+    @GetMapping("/mens")
+    public String getMensPage() {
+        return "mens";
+    }
+
+    @GetMapping("/women")
+    public String getWomenPage() {
+        return "women";
+    }
+
+    @GetMapping("/kids")
+    public String getKidsPage() {
+        return "kids";
     }
 
     @GetMapping("/contact")
@@ -34,5 +44,15 @@ public class IndexController {
     @GetMapping("/about-us")
     public String getAboutPage() {
         return "about-us";
+    }
+
+    @GetMapping("/shopping-cart")
+    public String getShoppingCartPage() {
+        return "shopping-cart";
+    }
+
+    @GetMapping("/checkout")
+    public String getCheckoutPage() {
+        return "checkout";
     }
 }
