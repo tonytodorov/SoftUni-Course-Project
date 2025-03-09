@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Логин</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/login.css">
 </head>
@@ -16,12 +16,14 @@
 
     <h2>Логин</h2>
 
-    <form action="/login" method="POST">
+    <form th:action="@{/login}" th:method="POST" th:object="${loginRequest}">
         <label for="email">Твоят имейл</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="email" required th:field="*{email}">
+        <p class="alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
 
         <label for="password">Парола</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="password" required th:field="*{password}">
+        <p class="alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
 
         <button type="submit" class="btn">Вход</button>
     </form>

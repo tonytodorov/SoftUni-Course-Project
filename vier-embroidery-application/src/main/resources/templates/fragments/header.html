@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
@@ -10,8 +10,9 @@
     <div class="top-bar">
         <a th:href="@{/}" class="company-name">Vier Embroidery</a>
         <div class="auth-buttons">
-            <a th:href="@{/login}">Логин</a>
-            <a th:href="@{/register}">Регистрация</a>
+            <a sec:authorize="isAnonymous()" th:href="@{/login}">Логин</a>
+            <a sec:authorize="isAnonymous()" th:href="@{/register}">Регистрация</a>
+            <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Изход</a>
             <a th:href="@{/shopping-cart}"><img src="https://cdn-icons-png.flaticon.com/512/846/846423.png" alt=""></a>
         </div>
     </div>
