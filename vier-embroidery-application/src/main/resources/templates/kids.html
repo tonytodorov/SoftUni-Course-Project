@@ -14,7 +14,7 @@
 
 
 <div class="product-grid">
-    <div th:each="cloth :${kidsClothes}" class="product-container" data-name="Product Name 1" data-price="19.99">
+    <div th:each="cloth :${kidsClothes}" class="product-container">
         <img th:src="${cloth.imageUrl}" alt="Product Image 1">
         <h2 th:text="${cloth.description}"></h2>
         <p th:text="${cloth.price + ' лв.'}"></p>
