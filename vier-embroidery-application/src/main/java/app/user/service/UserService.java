@@ -41,7 +41,7 @@ public class UserService implements UserDetailsService {
         return new AuthenticationDetails(user.getId(), email, user.getPassword(), user.getUserRole());
     }
 
-    public void register(RegisterRequest registerRequest) {
+    public User register(RegisterRequest registerRequest) {
         Optional<User> optionalUser = userRepository.findByEmail(registerRequest.getEmail());
 
         if (optionalUser.isPresent()) {
@@ -51,6 +51,8 @@ public class UserService implements UserDetailsService {
         User user = userRepository.save(initializeUser(registerRequest));
 
         log.info("User [%s] has been created!".formatted(user.getEmail()));
+
+        return user;
     }
 
     private User initializeUser(RegisterRequest registerRequest) {

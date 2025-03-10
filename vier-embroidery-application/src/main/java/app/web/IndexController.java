@@ -1,7 +1,8 @@
 package app.web;
 
-import app.security.AuthenticationDetails;
-import app.user.model.User;
+
+import app.product.model.Product;
+import app.product.service.ProductService;
 import app.user.service.UserService;
 import app.web.dto.LoginRequest;
 import app.web.dto.RegisterRequest;
@@ -13,14 +14,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller
 public class IndexController {
 
     private final UserService userService;
+    private final ProductService productService;
 
     @Autowired
-    public IndexController(UserService userService) {
+    public IndexController(UserService userService, ProductService productService) {
         this.userService = userService;
+        this.productService = productService;
     }
 
     @GetMapping("/")
@@ -49,30 +54,51 @@ public class IndexController {
     }
 
     @PostMapping("/register")
-    public ModelAndView registerNewUser(@Valid RegisterRequest registerRequest, BindingResult bindingResult) {
+    public String registerNewUser(@Valid RegisterRequest registerRequest, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return new ModelAndView("register");
+            return "register";
         }
 
         userService.register(registerRequest);
 
-        return new ModelAndView("redirect:/login");
-    }
-
-    @GetMapping("/mens")
-    public String getMensPage() {
-        return "mens";
+        return "redirect:/login";
     }
 
     @GetMapping("/women")
-    public String getWomenPage() {
-        return "women";
+    public ModelAndView getWomenPage() {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("women");
+
+        List<Product> womenClothes = productService.getWomenClothes();
+        modelAndView.addObject("womenClothes", womenClothes);
+
+        return modelAndView;
+    }
+
+    @GetMapping("/mens")
+    public ModelAndView getMensPage() {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("mens");
+
+        List<Product> mensClothes = productService.getMensClothes();
+        modelAndView.addObject("mensClothes", mensClothes);
+
+        return modelAndView;
     }
 
     @GetMapping("/kids")
-    public String getKidsPage() {
-        return "kids";
+    public ModelAndView getKidsPage() {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("kids");
+
+        List<Product> kidsClothes = productService.getKidsClothes();
+        modelAndView.addObject("kidsClothes", kidsClothes);
+
+        return modelAndView;
     }
 
     @GetMapping("/contact")

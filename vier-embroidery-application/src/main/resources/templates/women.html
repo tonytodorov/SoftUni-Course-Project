@@ -14,81 +14,16 @@
 
 
 <div class="product-grid">
-    <div class="product-container">
-        <img src="product-image.jpg" alt="Product Image 1">
-        <h2>Product Name 1</h2>
-        <p>$19.99</p>
-        <button class="add-to-cart">Add to Cart</button>
-    </div>
-    <div class="product-container">
-        <img src="product-image.jpg" alt="Product Image 2">
-        <h2>Product Name 2</h2>
-        <p>$24.99</p>
-        <button class="add-to-cart">Add to Cart</button>
-    </div>
-    <div class="product-container">
-        <img src="product-image.jpg" alt="Product Image 3">
-        <h2>Product Name 3</h2>
-        <p>$29.99</p>
-        <button class="add-to-cart">Add to Cart</button>
-    </div>
-    <div class="product-container">
-        <img src="product-image.jpg" alt="Product Image 4">
-        <h2>Product Name 4</h2>
-        <p>$34.99</p>
-        <button class="add-to-cart">Add to Cart</button>
-    </div>
-    <div class="product-container">
-        <img src="product-image.jpg" alt="Product Image 5">
-        <h2>Product Name 5</h2>
-        <p>$39.99</p>
-        <button class="add-to-cart">Add to Cart</button>
-    </div>
-    <div class="product-container">
-        <img src="product-image.jpg" alt="Product Image 6">
-        <h2>Product Name 6</h2>
-        <p>$44.99</p>
-        <button class="add-to-cart">Add to Cart</button>
-    </div>
-    <div class="product-container">
-        <img src="product-image.jpg" alt="Product Image 7">
-        <h2>Product Name 7</h2>
-        <p>$49.99</p>
-        <button class="add-to-cart">Add to Cart</button>
-    </div>
-    <div class="product-container">
-        <img src="product-image.jpg" alt="Product Image 8">
-        <h2>Product Name 8</h2>
-        <p>$54.99</p>
-        <button class="add-to-cart">Add to Cart</button>
-    </div>
-    <div class="product-container">
-        <img src="product-image.jpg" alt="Product Image 9">
-        <h2>Product Name 9</h2>
-        <p>$59.99</p>
-        <button class="add-to-cart">Add to Cart</button>
-    </div>
-    <div class="product-container">
-        <img src="product-image.jpg" alt="Product Image 10">
-        <h2>Product Name 10</h2>
-        <p>$64.99</p>
-        <button class="add-to-cart">Add to Cart</button>
-    </div>
-    <div class="product-container">
-        <img src="product-image.jpg" alt="Product Image 11">
-        <h2>Product Name 11</h2>
-        <p>$25.99</p>
-        <button class="add-to-cart">Add to Cart</button>
-    </div>
-    <div class="product-container">
-        <img src="product-image.jpg" alt="Product Image 12">
-        <h2>Product Name 12</h2>
-        <p>$32.99</p>
-        <button class="add-to-cart">Add to Cart</button>
+    <div th:each="cloth :${womenClothes}" class="product-container" data-name="Product Name 1" data-price="19.99">
+        <img th:src="${cloth.imageUrl}" alt="Product Image 1">
+        <h2 th:text="${cloth.description}"></h2>
+        <p th:text="${cloth.price + ' лв.'}"></p>
+        <button class="add-to-cart">Добави в количката</button>
     </div>
 </div>
-
 <th:block th:insert="fragments/footer :: footer"></th:block>
+
+<script src="/js/add-product.js"></script>
 
 </body>
 </html>
