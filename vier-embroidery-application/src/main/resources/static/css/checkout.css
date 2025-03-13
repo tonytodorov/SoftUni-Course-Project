@@ -1,16 +1,20 @@
-body {
+html, body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    background-image: url('/images/background_4.jpg');
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: auto;
 }
 
 .checkout-container {
-    width: 80%;
-    margin: 20px auto;
-    background-color: white;
+    width: 40%;
+    margin: 50px auto;
+    background: rgba(204, 204, 204, 0.8);
     padding: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .checkout-section {
@@ -19,7 +23,7 @@ body {
 
 .checkout-section h2 {
     font-size: 1.5em;
-    margin-bottom: 10px;
+    margin: 45px 0 30px 0;
     color: #333;
 }
 
@@ -27,12 +31,11 @@ body {
     font-size: 1em;
     margin: 5px 0;
     display: block;
-    color: #555;
+    padding: 5px 0;
 }
 
-.checkout-section input,
-.checkout-section textarea {
-    width: 100%;
+.checkout-section input {
+    width: 45%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
@@ -40,8 +43,8 @@ body {
     font-size: 1em;
 }
 
-.checkout-section textarea {
-    resize: vertical;
+.checkout-section input[type="radio"] {
+    width: auto;
 }
 
 .checkout-section input:focus,

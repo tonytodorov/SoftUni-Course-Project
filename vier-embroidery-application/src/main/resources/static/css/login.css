@@ -1,4 +1,5 @@
 .login-container {
+    flex: 1;
     background-image: url('/images/background_4.jpg');
     background-repeat: no-repeat;
     background-position: center;
@@ -8,15 +9,16 @@
 
 form {
     max-width: 300px;
-    margin: 20px auto;
+    margin: 30px auto;
     padding: 30px;
     color: black;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
+    text-align: center;
 }
 
 h2 {
-    padding: 40px;
+    padding: 15px;
     text-align: center;
     margin: 0 auto;
 }
@@ -24,11 +26,10 @@ h2 {
 label {
     display: block;
     margin: 10px 0 5px;
-    text-align: left;
 }
 
 input[type="email"], input[type="password"] {
-    width: 100%;
+    width: 70%;
     padding: 8px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
@@ -37,8 +38,8 @@ input[type="email"], input[type="password"] {
 
 button {
     display: block;
-    background-color: #b8956f;
-    color: black;
+    background-color: #a1621e;
+    color: white;
     padding: 10px 15px;
     margin: 15px auto;
     border: none;
@@ -47,7 +48,19 @@ button {
     width: 35%;
 }
 
+button:hover {
+    background-color: #814d17;
+    transform: scale(1.05);
+}
+
 .login-container p {
     text-align: center;
     margin: 0 auto;
 }
+
+.login-link {
+    color: #a1621e;
+    text-decoration: none;
+    font-size: 16px;
+}
+

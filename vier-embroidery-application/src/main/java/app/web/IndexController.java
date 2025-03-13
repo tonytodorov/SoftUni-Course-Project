@@ -9,12 +9,14 @@ import app.web.dto.RegisterRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @Controller
 public class IndexController {
@@ -29,8 +31,15 @@ public class IndexController {
     }
 
     @GetMapping("/")
-    public String getIndexPage() {
-        return "index";
+    public ModelAndView getIndexPage() {
+
+        List<Product> featuredProducts = productService.getWomenClothes().stream().limit(2).toList();
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("index");
+        modelAndView.addObject("featuredProducts", featuredProducts);
+
+        return modelAndView;
     }
 
     @GetMapping("/login")
@@ -114,10 +123,5 @@ public class IndexController {
     @GetMapping("/shopping-cart")
     public String getShoppingCartPage() {
         return "shopping-cart";
-    }
-
-    @GetMapping("/checkout")
-    public String getCheckoutPage() {
-        return "checkout";
     }
 }

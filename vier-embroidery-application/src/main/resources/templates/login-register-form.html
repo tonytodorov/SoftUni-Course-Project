@@ -1,0 +1,42 @@
+<!--<!doctype html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Document</title>-->
+<!--    <link rel="stylesheet" href="/css/styles.css">-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div id="authModal" class="modal">-->
+<!--    <div class="modal-content">-->
+
+<!--        <button class="close-btn" onclick="closeAuthModal()">✖</button>-->
+
+<!--        <div id="authForm">-->
+<!--            <form th:action="@{/login}" th:method="POST" th:object="${loginRequest}">-->
+<!--                <h2>Логин</h2>-->
+<!--                <input type="email" name="email" placeholder="Имейл" required th:field="*{email}">-->
+<!--                <p class="alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>-->
+<!--                <input type="password" name="password" placeholder="Парола" required th:field="*{password}">-->
+<!--                <p class="alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>-->
+<!--                <button type="submit">Логин</button>-->
+<!--            </form>-->
+<!--            <p>Нямате акаунт? <a href="#" onclick="showRegisterForm()">Регистрация</a></p>-->
+<!--        </div>-->
+
+<!--        <div id="registerForm" style="display: none;">-->
+<!--            <form th:action="@{/register}" th:method="POST" th:object="${registerRequest}">-->
+<!--                <h2>Регистрация</h2>-->
+<!--                <input type="email" name="email" placeholder="Имейл" required th:field="*{email}">-->
+<!--                <p class="alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>-->
+<!--                <input type="password" name="password" placeholder="Парола" required th:field="*{password}">-->
+<!--                <p class="alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>-->
+<!--                <button type="submit">Регистрация</button>-->
+<!--            </form>-->
+<!--            <p>Вече имате акаунт? <a href="#" onclick="showLoginForm()">Логин</a></p>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->

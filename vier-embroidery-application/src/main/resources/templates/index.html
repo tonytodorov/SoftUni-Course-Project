@@ -23,25 +23,20 @@
     <section class="featured-products">
         <h2>Наскоро добавени продукти</h2>
         <div class="product-grid">
-            <div class="product">
-                <img src="https://static.bnr.bg/gallery/cr/e58fd3d1d290316a9f1796f16729c076.jpg"
-                     alt="Embroidery Design 1">
-                <h3>Риза с традиционни български мотиви</h3>
-                <p>49.99 лв.</p>
-                <a href="product-details.html" class="btn">Добави в количката</a>
-            </div>
-            <div class="product">
-                <img src="https://i.etsystatic.com/16715571/r/il/f7616d/4559901266/il_fullxfull.4559901266_nehy.jpg"
-                     alt="Embroidery Design 2">
-                <h3>Тениска с традиционни български мотиви</h3>
-                <p>29.99 лв.</p>
-                <a href="product-details.html" class="btn">Добави в количката</a>
+            <div th:each="cloth :${featuredProducts}" class="product" th:attr="data-name=${cloth.description}, data-price=${cloth.price}">
+                <img th:src="${cloth.imageUrl}" alt="Product Image 1">
+                <h2 th:text="${cloth.description}"></h2>
+                <p th:text="${cloth.price + ' лв.'}"></p>
+                <button class="add-to-cart">Добави в количката</button>
             </div>
         </div>
     </section>
 </main>
 
 <th:block th:insert="fragments/footer :: footer"></th:block>
+
+<script src="/js/add-product.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 </html>

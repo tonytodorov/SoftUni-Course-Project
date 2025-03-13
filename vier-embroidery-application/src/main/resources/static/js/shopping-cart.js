@@ -8,15 +8,20 @@ document.addEventListener("DOMContentLoaded", function () {
         let total = 0;
         cart.forEach((item, index) => {
             let row = document.createElement("tr");
+            let itemTotal = item.price * item.quantity;
             row.innerHTML = `
-                    <td><img src="${item.image}" alt="${item.name}" class="cart-img"></td>
-                    <td>${item.name}</td>
-                    <td><input type="number" value="1" min="1" class="quantity" data-index="${index}" style="width: 50px; height: 20px; font-size: 16px; text-align: center;"></td>
-                    <td class="item-total">${item.price}</td>
-                    <td><button class="remove-item" data-index="${index}" style="color: red; font-size: 18px; border: none; background: none; cursor: pointer;">❌</button></td>
-                `;
+                <td><img src="${item.image}" alt="${item.name}" class="cart-img"></td>
+                <td>${item.name}</td>
+                <td>
+                    <input type="number" value="${item.quantity}" min="1" class="quantity" data-index="${index}" style="width: 50px; height: 20px; font-size: 16px; text-align: center;">
+                </td>
+                <td class="item-total">${itemTotal.toFixed(2)} лв.</td>
+                <td>
+                    <button class="remove-item" data-index="${index}" style="color: red; font-size: 18px; border: none; background: none; cursor: pointer;">❌</button>
+                </td>
+            `;
             cartItemsContainer.appendChild(row);
-            total += parseFloat(item.price);
+            total += itemTotal;
         });
         cartTotal.textContent = `Общо: ${total.toFixed(2)} лв.`;
         addEventListeners();
@@ -41,21 +46,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     quantity = 1;
                 }
 
-                let price = parseFloat(cart[index].price);
-                let itemTotal = price * quantity;
-                this.parentElement.nextElementSibling.textContent = `${itemTotal.toFixed(2)}`;
-                updateCartTotal();
+                cart[index].quantity = quantity;
+                localStorage.setItem("cart", JSON.stringify(cart));
+                updateCart();
             });
         });
-    }
-
-    function updateCartTotal() {
-        let total = 0;
-        document.querySelectorAll(".item-total").forEach(cell => {
-            total += parseFloat(cell.textContent.replace(" лв.", ""));
-        });
-
-        cartTotal.textContent = `Общо: ${total.toFixed(2)} лв.`;
     }
 
     updateCart();
