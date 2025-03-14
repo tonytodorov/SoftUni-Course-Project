@@ -33,7 +33,7 @@ public class IndexController {
     @GetMapping("/")
     public ModelAndView getIndexPage() {
 
-        List<Product> featuredProducts = productService.getWomenClothes().stream().limit(2).toList();
+        List<Product> featuredProducts = productService.getWomenClothes().stream().limit(3).toList();
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index");
@@ -123,5 +123,10 @@ public class IndexController {
     @GetMapping("/shopping-cart")
     public String getShoppingCartPage() {
         return "shopping-cart";
+    }
+
+    @GetMapping("/wishlist")
+    public String getWishlistPage() {
+        return "wishlist";
     }
 }

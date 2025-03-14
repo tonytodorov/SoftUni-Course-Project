@@ -5,7 +5,7 @@ html, body {
     margin: 0;
     background-image: url('/images/background_4.jpg');
     background-repeat: no-repeat;
-    background-position: top center;
+    background-position: left;
     background-size: auto;
 }
 .product-grid {
@@ -25,7 +25,7 @@ html, body {
     width: 300px;
 }
 .product-container img {
-    width: 100%;
+    width: 70%;
     border-radius: 5px;
 }
 .product-container h2 {
@@ -50,4 +50,16 @@ html, body {
 .add-to-cart:hover {
     background-color: #814d17;
     transform: scale(1.05);
+}
+
+.wishlist-icon {
+    font-size: 24px;
+    color: #bbb;
+    cursor: pointer;
+    position: absolute;
+    transition: color 0.3s ease;
+}
+
+.wishlist-icon.active {
+    color: #e74c3c;
 }

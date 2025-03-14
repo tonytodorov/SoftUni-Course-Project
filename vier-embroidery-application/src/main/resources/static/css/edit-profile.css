@@ -1,0 +1,60 @@
+html, body {
+    font-family: Arial, sans-serif;
+    background-image: url('/images/background_4.jpg');
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: auto;
+}
+
+.container {
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="password"] {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    margin-top: 5px;
+}
+
+button {
+    width: 50%;
+    margin: 25px auto;
+    padding: 10px;
+    background-color: #a1621e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #814d17;
+    transform: scale(1.05);
+}

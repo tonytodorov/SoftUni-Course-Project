@@ -6,6 +6,7 @@ import app.user.model.User;
 import app.user.model.UserRole;
 import app.user.repository.UserRepository;
 import app.web.dto.RegisterRequest;
+import app.web.dto.UserEditRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -64,4 +65,19 @@ public class UserService implements UserDetailsService {
                 .build();
     }
 
+    public User getUserById(UUID userId) {
+        return userRepository.findById(userId).orElseThrow(() -> new DomainException("User with id [%s] does not exist.".formatted(userId)));
+    }
+
+    public void editProfile(UUID userId, UserEditRequest userEditRequest) {
+
+        User user = getUserById(userId);
+
+        user.setFirstName(userEditRequest.getFirstName());
+        user.setLastName(userEditRequest.getLastName());
+        user.setPhoneNumber(userEditRequest.getPhoneNumber());
+        user.setAddress(userEditRequest.getAddress());
+
+        userRepository.save(user);
+    }
 }

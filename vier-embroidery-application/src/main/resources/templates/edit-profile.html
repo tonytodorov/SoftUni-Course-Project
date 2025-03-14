@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактиране на профил</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/edit-profile.css">
+</head>
+
+<body>
+<th:block th:insert="fragments/header :: header"></th:block>
+<th:block th:insert="fragments/nav-bar :: nav-bar"></th:block>
+
+<div class="container">
+    <h2>Редактиране на профил</h2>
+    <form th:action="@{'/user/' + ${user.id} + '/profile'}" th:method="POST" th:object="${userEditRequest}">
+        <div class="form-group">
+            <label for="name">Име</label>
+            <input type="text" id="name" name="name" required th:field="*{firstName}">
+        </div>
+
+        <div class="form-group">
+            <label for="surname">Фамилия</label>
+            <input type="text" id="surname" name="surname" required th:field="*{lastName}">
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Телефон:</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required th:field="*{phoneNumber}">
+        </div>
+
+        <div class="form-group">
+            <label for="address">Адрес</label>
+            <input type="text" id="address" name="address" th:field="*{address}">
+        </div>
+
+        <div class="form-group">
+            <button type="submit">Запази промените</button>
+        </div>
+    </form>
+</div>
+
+<th:block th:insert="fragments/footer :: footer"></th:block>
+</body>
+</html>

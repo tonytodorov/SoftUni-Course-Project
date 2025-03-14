@@ -20,12 +20,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
             localStorage.setItem("cart", JSON.stringify(cart));
             Swal.fire({
-                title: "Добавено в количката",
-                text: "Вашият артикул е добавен успешно!",
-                icon: "success",
+                toast: true,
+                position: "top-end",
+                iconHtml: `<img src="https://cdn-icons-png.flaticon.com/128/14090/14090371.png" alt="" width="50px" height="50px">`,
+                title: "Добавено в количката!",
                 showConfirmButton: false,
-                timer: 2000
+                timer: 1200,
+                timerProgressBar: true,
+                background: "#fff",
+                customClass: {
+                    popup: 'colored-toast'
+                }
             });
+
         });
     });
 });

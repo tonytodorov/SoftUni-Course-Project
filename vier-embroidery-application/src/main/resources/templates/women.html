@@ -12,18 +12,20 @@
 <th:block th:insert="fragments/header :: header"></th:block>
 <th:block th:insert="fragments/nav-bar :: nav-bar"></th:block>
 
-
 <div class="product-grid">
-    <div th:each="cloth :${womenClothes}" class="product-container" th:attr="data-name=${cloth.description}, data-price=${cloth.price}">
-        <img th:src="${cloth.imageUrl}" alt="Product Image 1">
+    <div th:each="cloth : ${womenClothes}" class="product-container" th:attr="data-id=${cloth.id}, data-name=${cloth.description}, data-price=${cloth.price}, data-image=${cloth.imageUrl}">
+        <span class="wishlist-icon" th:attr="data-id=${cloth.id}">❤️</span>
+        <img th:src="${cloth.imageUrl}" alt="Product Image">
         <h2 th:text="${cloth.description}"></h2>
         <p th:text="${cloth.price + ' лв.'}"></p>
         <button class="add-to-cart">Добави в количката</button>
     </div>
 </div>
+
 <th:block th:insert="fragments/footer :: footer"></th:block>
 
 <script src="/js/add-product.js"></script>
+<script src="/js/wishlist.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>

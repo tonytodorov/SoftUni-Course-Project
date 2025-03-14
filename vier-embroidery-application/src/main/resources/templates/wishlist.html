@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Списък с любими</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/wishlist.css">
+</head>
+
+<body>
+
+<th:block th:insert="fragments/header :: header"></th:block>
+<th:block th:insert="fragments/nav-bar :: nav-bar"></th:block>
+
+<main class="wishlist-container">
+    <h1>Списък с любими</h1>
+
+    <div id="wishlist-items" class="wishlist-items"></div>
+
+    <div id="empty-wishlist" class="empty-wishlist" style="display: none;">
+        <p>Вашият списък с любими е празен.</p>
+    </div>
+</main>
+
+<th:block th:insert="fragments/footer :: footer"></th:block>
+
+<script src="/js/wishlist.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+</html>

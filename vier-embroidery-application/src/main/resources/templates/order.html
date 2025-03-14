@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Плащане</title>
     <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/checkout.css">
+    <link rel="stylesheet" href="/css/order.css">
 </head>
 <body>
 
 <th:block th:insert="fragments/header :: header"></th:block>
 <th:block th:insert="fragments/nav-bar :: nav-bar"></th:block>
 
-<div class="checkout-container">
-    <h1>Плащане</h1>
-    <form id="checkout-form">
-        <div class="checkout-section">
+<div class="order-container">
+    <h1>Поръчка</h1>
+    <form id="order-form" th:action="@{/order}" th:method="POST" th:object="${orderRequest}">
+        <div class="order-section">
             <h2>Информация за доставка</h2>
             <label for="name">Име</label>
             <input type="text" id="name" name="name" required>
@@ -36,7 +36,7 @@
             <input type="text" id="address" name="address" required>
         </div>
 
-        <div class="checkout-section">
+        <div class="order-section">
             <h2>Опции за плащане</h2>
             <label>
                 <input type="radio" name="payment-option" value="cash-on-delivery" required>
@@ -44,7 +44,7 @@
             </label>
         </div>
 
-        <div class="checkout-summary">
+        <div class="order-summary">
             <h2>Order Summary</h2>
             <table class="order-summary-table">
                 <thead>
@@ -56,7 +56,7 @@
                 </tr>
                 </thead>
                 <tbody id="order-summary-items">
-                <!-- Dynamic order summary will be inserted here -->
+
                 </tbody>
             </table>
             <div class="order-summary-total">
@@ -65,15 +65,14 @@
         </div>
 
         <div class="checkout-actions">
-            <button type="submit" class="submit-order-button">Place Order</button>
-            <button type="button" class="cancel-order-button" onclick="window.location.href='/shopping-cart.html'">Cancel</button>
+            <button type="submit" class="submit-order-button">Поръчай сега</button>
         </div>
     </form>
 </div>
 
 <th:block th:insert="fragments/footer :: footer"></th:block>
 
-<script src="/js/checkout.js"></script>
+<script src="/js/order.js"></script>
 
 </body>
 </html>
