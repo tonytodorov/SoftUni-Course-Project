@@ -55,7 +55,7 @@ h1 {
 .checkout-button {
     display: inline-block;
     padding: 10px 20px;
-    background: #28a745;
+    background: #a1621e;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -63,7 +63,8 @@ h1 {
 }
 
 .checkout-button:hover {
-    background: #218838;
+    background-color: #814d17;
+    transform: scale(1.05);
 }
 
 .remove-button {

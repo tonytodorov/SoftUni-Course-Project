@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-image: url('/images/background_4.jpg');
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: auto;
+}
+
+.container {
+    flex: 1;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(204, 204, 204, 0.8);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #b8956f;
+    color: black;
+}
+
+button {
+    width: 80%;
+    background-color: #a1621e;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #814d17;
+    transform: scale(1.05);
+}

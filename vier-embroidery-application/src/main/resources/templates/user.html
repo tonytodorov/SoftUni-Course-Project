@@ -22,6 +22,7 @@
             <p><strong>Фамилия:</strong> <span th:text="${user.lastName}"></span></p>
             <p><strong>Телефон:</strong> <span th:text="${user.phoneNumber}"></span></p>
             <p><strong>Адрес:</strong> <span th:text="${user.address}"></span></p>
+            <p><strong>Създаден на:</strong> <span th:text="${#temporals.format(user.createdOn, 'dd MMM yyyy HH:mm')}"></span></p>
         </div>
     </div>
     <form th:action="@{'/user/' + ${user.id} + '/profile'}" th:method="GET">

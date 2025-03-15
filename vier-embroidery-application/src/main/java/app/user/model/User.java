@@ -1,7 +1,6 @@
 package app.user.model;
 
 import app.order.model.Order;
-import app.paymentCard.model.PaymentCard;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -45,7 +44,4 @@ public class User {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Order> orders = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private List<PaymentCard> paymentCards = new ArrayList<>();
 }

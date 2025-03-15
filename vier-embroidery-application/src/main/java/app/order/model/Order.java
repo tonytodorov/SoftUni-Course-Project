@@ -1,7 +1,5 @@
 package app.order.model;
 
-import app.paymentCard.model.PaymentCard;
-import app.product.model.Product;
 import app.user.model.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,6 +23,28 @@ public class Order {
     private UUID id;
 
     @Column(nullable = false)
+    private String firstName;
+
+    @Column(nullable = false)
+    private String lastName;
+
+    @Column(nullable = false)
+    private String email;
+
+    @Column(nullable = false)
+    private String phoneNumber;
+
+    @Column(nullable = false)
+    private String city;
+
+    @Column(nullable = false)
+    private String address;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private PaymentMethod paymentMethod;
+
+    @Column(nullable = false)
     private LocalDateTime orderDate;
 
     @Column
@@ -34,10 +54,6 @@ public class Order {
     @ManyToOne
     private User user;
 
-    @ManyToMany
-    @JoinTable(name = "order_products",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    private List<Product> products = new ArrayList<>();
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+    private List<OrderItem> orderItems = new ArrayList<>();
 }

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ProductService {
@@ -27,5 +29,9 @@ public class ProductService {
 
     public List<Product> getKidsClothes() {
         return productRepository.findByCategoryName("Kid");
+    }
+
+    public Product findById(UUID productId) {
+        return productRepository.findProductById(productId);
     }
 }

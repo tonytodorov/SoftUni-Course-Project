@@ -4,6 +4,7 @@ package app.web;
 import app.product.model.Product;
 import app.product.service.ProductService;
 import app.user.service.UserService;
+import app.web.dto.ContactRequest;
 import app.web.dto.LoginRequest;
 import app.web.dto.RegisterRequest;
 import jakarta.validation.Valid;
@@ -111,8 +112,25 @@ public class IndexController {
     }
 
     @GetMapping("/contact")
-    public String getContactPage() {
-        return "contact";
+    public ModelAndView getContactPage() {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("contact");
+        modelAndView.addObject("contactRequest", new ContactRequest());
+        
+        return modelAndView;
+    }
+
+    @PostMapping("/contact")
+    public String sendEmail(@Valid ContactRequest contactRequest, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "contact";
+        }
+
+        userService.sendEmail(contactRequest);
+
+        return "redirect:/";
     }
 
     @GetMapping("/about-us")

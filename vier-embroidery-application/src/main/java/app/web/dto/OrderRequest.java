@@ -3,14 +3,16 @@ package app.web.dto;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class OrderRequest {
 
     @NotNull
-    private String name;
+    private String firstName;
 
     @NotNull
-    private String surname;
+    private String lastName;
 
     @NotNull
     private String email;
@@ -23,4 +25,11 @@ public class OrderRequest {
 
     @NotNull
     private String address;
+
+    @NotNull
+    private String paymentMethod;
+
+    @NotNull
+    private List<CartItem> cartItems;
+
 }

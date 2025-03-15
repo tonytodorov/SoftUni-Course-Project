@@ -1,10 +1,12 @@
 package app.user.service;
 
+import app.email.service.EmailService;
 import app.exception.DomainException;
 import app.security.AuthenticationDetails;
 import app.user.model.User;
 import app.user.model.UserRole;
 import app.user.repository.UserRepository;
+import app.web.dto.ContactRequest;
 import app.web.dto.RegisterRequest;
 import app.web.dto.UserEditRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -25,11 +28,13 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final EmailService emailService;
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, EmailService emailService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.emailService = emailService;
     }
 
     @Override
@@ -79,5 +84,31 @@ public class UserService implements UserDetailsService {
         user.setAddress(userEditRequest.getAddress());
 
         userRepository.save(user);
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public void switchRole(UUID userId) {
+
+        User user = getUserById(userId);
+
+        if (user.getUserRole() == UserRole.USER) {
+            user.setUserRole(UserRole.ADMIN);
+        } else {
+            user.setUserRole(UserRole.USER);
+        }
+
+        userRepository.save(user);
+    }
+
+    public void sendEmail(ContactRequest contactRequest) {
+
+        String title = contactRequest.getTitle();
+        String email = contactRequest.getEmail();
+        String body = contactRequest.getBody();
+
+        emailService.sendEmail(title, email, body);
     }
 }

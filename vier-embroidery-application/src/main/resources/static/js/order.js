@@ -1,12 +1,8 @@
-const cartItems = [
-    { name: 'Product 1', quantity: 2, price: 19.99 },
-    { name: 'Product 2', quantity: 1, price: 49.99 },
-    { name: 'Product 3', quantity: 3, price: 9.99 }
-];
-
 function populateOrderSummary() {
     const orderSummaryItems = document.getElementById('order-summary-items');
     let totalAmount = 0;
+
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
     cartItems.forEach(item => {
         const row = document.createElement('tr');
@@ -14,15 +10,15 @@ function populateOrderSummary() {
         totalAmount += total;
 
         row.innerHTML = `
+            <td><img src="${item.image}" alt="${item.name}" class="order-img" style="width: 50px; height: 50px;"></td>
             <td>${item.name}</td>
             <td>${item.quantity}</td>
-            <td>$${item.price.toFixed(2)}</td>
-            <td>$${total.toFixed(2)}</td>
+            <td>${item.price.toFixed(2)} лв.</td>
         `;
         orderSummaryItems.appendChild(row);
     });
 
-    document.getElementById('order-total').textContent = totalAmount.toFixed(2);
+    document.getElementById('order-total').textContent = totalAmount.toFixed(2) + ' лв.';
 }
 
 function validateForm(event) {
@@ -47,5 +43,44 @@ document.addEventListener('DOMContentLoaded', () => {
     populateOrderSummary();
 
     const form = document.getElementById('order-form');
-    form.addEventListener('submit', validateForm);
+    form.addEventListener('submit', function(event) {
+        if (validateForm(event)) {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const orderData = {
+                firstName: form.name.value.trim(),
+                lastName: form.surname.value.trim(),
+                email: form.email.value.trim(),
+                phoneNumber: form.phone.value.trim(),
+                city: form.city.value.trim(),
+                address: form.address.value.trim(),
+                paymentMethod: "UPON_DELIVERY",
+                cartItems: cart.map(item => ({
+                    productId: item.productId,
+                    quantity: item.quantity
+                }))
+            };
+
+            // Send order data to backend
+            fetch('/order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(orderData),
+                credentials: "include"
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Order placed successfully!');
+                        window.location.href = '/';
+                    } else {
+                        alert('Failed to place the order.');
+                    }
+                })
+                .catch(error => {
+                    alert('An error occurred while placing the order.');
+                    console.error(error);
+                });
+        }
+    });
 });
