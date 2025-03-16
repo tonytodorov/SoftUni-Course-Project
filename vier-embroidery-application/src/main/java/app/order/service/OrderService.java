@@ -53,26 +53,27 @@ public class OrderService {
                 .user(user)
                 .build();
 
-        List<OrderItem> orderItems = orderRequest.getCartItems().stream()
+        Order savedOrder = orderRepository.save(order);
+
+        List<OrderItem> orderItems = createOrderItems(orderRequest, savedOrder);
+        orderItemRepository.saveAll(orderItems);
+
+        savedOrder.setOrderItems(orderItems);
+    }
+
+    private List<OrderItem> createOrderItems(OrderRequest orderRequest, Order order) {
+        return orderRequest.getCartItems().stream()
                 .map(cartItem -> {
                     Product product = productService.findById(cartItem.getProductId());
 
-                    OrderItem orderItem = OrderItem.builder()
+                    return OrderItem.builder()
                             .order(order)
                             .product(product)
                             .quantity(cartItem.getQuantity())
                             .price(product.getPrice())
                             .totalPrice(product.getPrice().multiply(BigDecimal.valueOf(cartItem.getQuantity())))
                             .build();
-
-                    orderItemRepository.save(orderItem);
-
-                    return orderItem;
                 })
                 .collect(Collectors.toList());
-
-        order.setOrderItems(orderItems);
-
-        orderRepository.save(order);
     }
 }

@@ -44,8 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const form = document.getElementById('order-form');
     form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
         if (validateForm(event)) {
-            const cart = JSON.parse(localStorage.getItem("cart")) || [];
             const orderData = {
                 firstName: form.name.value.trim(),
                 lastName: form.surname.value.trim(),
@@ -54,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 city: form.city.value.trim(),
                 address: form.address.value.trim(),
                 paymentMethod: "UPON_DELIVERY",
-                cartItems: cart.map(item => ({
+                cartItems: JSON.parse(localStorage.getItem("cart") || "[]").map(item => ({
                     productId: item.id,
                     quantity: item.quantity
                 }))
@@ -69,11 +70,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 credentials: "include"
             })
                 .then(response => {
-                    if (response.ok) {
-                        alert('Order placed successfully!');
-                        window.location.href = '/';
+                    if (response.redirected) {
+                        window.location.href = response.url;
+                        localStorage.clear()
                     } else {
-                        alert('Failed to place the order.');
+                        return response.text();
+                    }
+                })
+                .then(data => {
+                    if (data) {
+                        alert('Failed to place order.');
                     }
                 })
                 .catch(error => {
