@@ -55,12 +55,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 address: form.address.value.trim(),
                 paymentMethod: "UPON_DELIVERY",
                 cartItems: cart.map(item => ({
-                    productId: item.productId,
+                    productId: item.id,
                     quantity: item.quantity
                 }))
             };
 
-            // Send order data to backend
             fetch('/order', {
                 method: 'POST',
                 headers: {

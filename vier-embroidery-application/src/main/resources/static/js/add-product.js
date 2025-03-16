@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     buttons.forEach(button => {
         button.addEventListener("click", function () {
             const product = this.parentElement;
+            const id = product.getAttribute("data-id");
             const name = product.getAttribute("data-name");
             const price = parseFloat(product.getAttribute("data-price"));
             const image = product.querySelector("img").src;
@@ -15,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (existingProduct) {
                 existingProduct.quantity += 1;
             } else {
-                cart.push({ name, price, image, quantity: 1 });
+                cart.push({ id, name, price, image, quantity: 1 });
             }
 
             localStorage.setItem("cart", JSON.stringify(cart));

@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <button class="remove-item" data-index="${index}" style="color: red; font-size: 18px; border: none; background: none; cursor: pointer;">❌</button>
                 </td>
             `;
+
             cartItemsContainer.appendChild(row);
             total += itemTotal;
         });

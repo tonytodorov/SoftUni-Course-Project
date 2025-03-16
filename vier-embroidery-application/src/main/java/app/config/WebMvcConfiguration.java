@@ -17,6 +17,9 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
         httpSecurity
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers("/order")
+                )
                 .authorizeHttpRequests(request -> request
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/admin").hasRole("ADMIN")
