@@ -107,8 +107,8 @@ public class UserService implements UserDetailsService {
 
         String title = contactRequest.getTitle();
         String email = contactRequest.getEmail();
-        String body = contactRequest.getBody();
+        String message = contactRequest.getMessage();
 
-        emailService.sendEmail(title, email, body);
+        emailService.sendEmail(title, email, message);
     }
 }

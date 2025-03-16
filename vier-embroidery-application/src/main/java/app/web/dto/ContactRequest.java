@@ -13,5 +13,5 @@ public class ContactRequest {
     private String email;
 
     @NotNull
-    private String body;
+    private String message;
 }

@@ -3,10 +3,15 @@ package app.email.service;
 import app.email.client.EmailClient;
 import app.email.client.dto.EmailRequest;
 import app.email.client.dto.EmailResponse;
+import app.exception.DomainException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -19,12 +24,29 @@ public class EmailService {
         this.emailClient = emailClient;
     }
 
-    public void sendEmail(String title, String email, String body) {
+    public List<EmailResponse> getUserEmails(String email) {
+
+        try {
+            ResponseEntity<List<EmailResponse>> response = emailClient.getUserEmails(email);
+
+            if (response.getStatusCode().is2xxSuccessful()) {
+                return response.getBody();
+            } else {
+                log.warn("Failed to fetch emails. Response status: {}", response.getStatusCode());
+                return Collections.emptyList();
+            }
+        } catch (Exception e) {
+            log.warn("Failed to fetch emails. The reason is: %s".formatted(e.getMessage()));
+            return Collections.emptyList();
+        }
+    }
+
+    public void sendEmail(String emailTitle, String userEmail, String emailMessage) {
 
         EmailRequest emailRequest = EmailRequest.builder()
-                .title(title)
-                .email(email)
-                .body(body)
+                .title(emailTitle)
+                .email(userEmail)
+                .message(emailMessage)
                 .build();
 
         ResponseEntity<EmailResponse> httpResponse;
@@ -32,7 +54,7 @@ public class EmailService {
         try {
             httpResponse = emailClient.sendEmail(emailRequest);
             if (!httpResponse.getStatusCode().is2xxSuccessful()) {
-                log.error("[Feign call to email-svc failed] Can't send email.");
+                log.error("Email send successfully.");
             }
         } catch (Exception e) {
             log.warn("Can't send email to user due to 500 Internal Server Error.");

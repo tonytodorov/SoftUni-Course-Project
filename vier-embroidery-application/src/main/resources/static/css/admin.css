@@ -41,7 +41,7 @@ table th {
 }
 
 button {
-    width: 80%;
+    width: 100%;
     background-color: #a1621e;
     color: white;
     border: none;
@@ -54,3 +54,16 @@ button:hover {
     background-color: #814d17;
     transform: scale(1.05);
 }
+
+.back-button {
+    display: block;
+    width: 20%;
+    color: white;
+    border: none;
+    text-decoration: none;
+    padding: 8px 12px;
+    margin: 5px auto;
+    cursor: pointer;
+    border-radius: 4px;
+}
+

@@ -11,5 +11,5 @@ public class EmailRequest {
 
     private String email;
 
-    private String body;
+    private String message;
 }

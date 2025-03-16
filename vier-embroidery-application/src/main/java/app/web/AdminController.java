@@ -1,5 +1,7 @@
 package app.web;
 
+import app.email.client.dto.EmailResponse;
+import app.email.service.EmailService;
 import app.security.AuthenticationDetails;
 import app.user.model.User;
 import app.user.service.UserService;
@@ -20,10 +22,12 @@ import java.util.UUID;
 public class AdminController {
 
     private final UserService userService;
+    private final EmailService emailService;
 
     @Autowired
-    public AdminController(UserService userService) {
+    public AdminController(UserService userService, EmailService emailService) {
         this.userService = userService;
+        this.emailService = emailService;
     }
 
     @GetMapping
@@ -44,5 +48,17 @@ public class AdminController {
         userService.switchRole(userId);
 
         return "redirect:/admin";
+    }
+
+    @GetMapping("/{email}/all-emails")
+    public ModelAndView getUserEmails(@PathVariable String email) {
+
+        List<EmailResponse> userEmails = emailService.getUserEmails(email);
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("userEmails", userEmails);
+        modelAndView.setViewName("email");
+
+        return modelAndView;
     }
 }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Имейли на потребителя</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+
+<th:block th:insert="fragments/header :: header"></th:block>
+<th:block th:insert="fragments/nav-bar :: nav-bar"></th:block>
+
+<div class="container">
+
+    <h1>Имейли на потребителя</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Изпратено от</th>
+            <th>Заглавие</th>
+            <th>Съобщение</th>
+            <th>Изпратено на</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="email : ${userEmails}">
+            <td th:text="${email.email}"></td>
+            <td th:text="${email.title}"></td>
+            <td th:text="${email.message}"></td>
+            <td th:text="${#temporals.format(email.sentAt, 'dd MMM yyyy HH:mm')}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/admin}" class="back-button">
+        <button type="button">Обратно</button>
+    </a>
+</div>
+
+<th:block th:insert="fragments/footer :: footer"></th:block>
+
+</body>
+</html>

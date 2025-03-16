@@ -9,11 +9,11 @@ import java.time.LocalDateTime;
 @Builder
 public class EmailResponse {
 
+    private String title;
+
     private String email;
 
-    private String subject;
-
-    private String body;
+    private String message;
 
     private LocalDateTime sentAt;
 }

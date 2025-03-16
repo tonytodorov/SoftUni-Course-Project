@@ -26,6 +26,7 @@
             <th>Роля</th>
             <th>Създаден на</th>
             <th>Промяна на роля</th>
+            <th>Имейли</th>
         </tr>
         </thead>
 
@@ -41,6 +42,11 @@
                 <form th:action="@{'/admin/' + ${user.id} + '/change-role'}" th:method="PUT">
                     <input type="hidden" name="userId" th:value="${user.id}">
                     <button type="submit">Смени роля</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{'/admin/' + ${user.email} + '/all-emails'}" th:method="GET">
+                    <button type="submit">Отвори</button>
                 </form>
             </td>
         </tr>
