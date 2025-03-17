@@ -43,49 +43,50 @@ document.addEventListener('DOMContentLoaded', () => {
     populateOrderSummary();
 
     const form = document.getElementById('order-form');
-    form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-        if (validateForm(event)) {
-            const orderData = {
-                firstName: form.name.value.trim(),
-                lastName: form.surname.value.trim(),
-                email: form.email.value.trim(),
-                phoneNumber: form.phone.value.trim(),
-                city: form.city.value.trim(),
-                address: form.address.value.trim(),
-                paymentMethod: "UPON_DELIVERY",
-                cartItems: JSON.parse(localStorage.getItem("cart") || "[]").map(item => ({
-                    productId: item.id,
-                    quantity: item.quantity
-                }))
-            };
+        const orderData = {
+            firstName: form.name.value.trim(),
+            lastName: form.surname.value.trim(),
+            email: form.email.value.trim(),
+            phoneNumber: form.phone.value.trim(),
+            city: form.city.value.trim(),
+            address: form.address.value.trim(),
+            paymentMethod: "UPON_DELIVERY",
+            cartItems: JSON.parse(localStorage.getItem("cart") || "[]").map(item => ({
+                productId: item.id,
+                quantity: item.quantity
+            }))
+        };
 
-            fetch('/order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(orderData),
-                credentials: "include"
+        fetch('/order', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(orderData),
+            credentials: "include"
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                } else {
+                    throw new Error('Failed to place order. HTTP Status: ' + response.status);
+                }
             })
-                .then(response => {
-                    if (response.redirected) {
-                        window.location.href = response.url;
-                        localStorage.clear()
-                    } else {
-                        return response.text();
-                    }
-                })
-                .then(data => {
-                    if (data) {
-                        alert('Failed to place order.');
-                    }
-                })
-                .catch(error => {
-                    alert('An error occurred while placing the order.');
-                    console.error(error);
-                });
-        }
+            .then(data => {
+                if (data) {
+                    alert('Order placed successfully!');
+                    window.location.href = '/';
+                    localStorage.clear()
+                }
+            })
+            .catch(error => {
+                alert('An error occurred while placing the order.');
+                console.error(error);
+                window.location.href = '/order';
+            });
     });
 });
+

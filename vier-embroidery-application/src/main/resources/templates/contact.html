@@ -30,13 +30,16 @@
         <div class="flex-container">
             <label for="title">Заглавие:</label>
             <input type="text" id="title" name="title" required th:field="*{title}">
+            <p class="alert-warning" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
 
             <label for="email">Имейл адрес:</label>
             <input type="email" id="email" name="email" required th:field="*{email}">
+            <p class="alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
         </div>
 
         <label for="message">Съобщение:</label>
         <textarea id="message" name="message" rows="5" required th:field="*{message}"></textarea>
+        <p class="alert-warning" th:if="${#fields.hasErrors('message')}" th:errors="*{message}"></p>
 
         <button type="submit">Изпрати</button>
     </form>

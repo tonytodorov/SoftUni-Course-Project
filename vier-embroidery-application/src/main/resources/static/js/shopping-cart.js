@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     const cartItemsContainer = document.getElementById("cart-items");
     const cartTotal = document.getElementById("cart-total");
+    const orderButton = document.getElementById("order-button");
 
     function updateCart() {
         cartItemsContainer.innerHTML = "";
@@ -25,6 +26,9 @@ document.addEventListener("DOMContentLoaded", function () {
             total += itemTotal;
         });
         cartTotal.textContent = `Общо: ${total.toFixed(2)} лв.`;
+
+        orderButton.disabled = cart.length === 0;
+
         addEventListeners();
     }
 

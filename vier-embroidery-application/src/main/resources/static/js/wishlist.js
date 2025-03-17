@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 wishlistContainer.appendChild(wishlistItem);
             });
 
-            // Attach event listener to "Премахни" buttons
             document.querySelectorAll(".remove-btn").forEach(button => {
                 button.addEventListener("click", function () {
                     removeFromWishlist(this.getAttribute("data-id"));
@@ -43,7 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             });
 
-            // Attach event listener to "Добави в количката" buttons
             document.querySelectorAll(".add-to-cart-btn").forEach(button => {
                 button.addEventListener("click", function () {
                     addToCartFromWishlist(this);

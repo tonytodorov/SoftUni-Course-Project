@@ -30,7 +30,9 @@
     </table>
     <div class="cart-summary">
         <h2><span id="cart-total"></span></h2>
-        <a th:href="@{/order}" class="checkout-button">Поръчай</a>
+        <form th:action="@{/order}" th:method="GET">
+            <button type="submit" id="order-button" class="checkout-button" disabled>Поръчай</button>
+        </form>
     </div>
 </div>
 

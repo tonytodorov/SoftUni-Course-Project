@@ -1,13 +1,10 @@
 package app.product.model;
 
 import app.category.model.Category;
-import app.order.model.Order;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Builder

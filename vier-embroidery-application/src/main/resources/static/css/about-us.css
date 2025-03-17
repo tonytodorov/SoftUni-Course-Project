@@ -7,6 +7,7 @@ html, body {
     background-position: top center;
     background-size: cover;
 }
+
 .container {
     flex: 1;
     width: 60%;
@@ -16,6 +17,7 @@ html, body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 h2 {
     text-align: center;
 }
