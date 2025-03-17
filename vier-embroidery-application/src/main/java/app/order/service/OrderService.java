@@ -76,4 +76,16 @@ public class OrderService {
                 })
                 .collect(Collectors.toList());
     }
+
+    public List<Order> findByOrderDateBefore(LocalDateTime oneYearAgo) {
+        return orderRepository.findByOrderDateBefore(oneYearAgo);
+    }
+
+    public void deleteOrderItem(OrderItem orderItem) {
+        orderItemRepository.delete(orderItem);
+    }
+
+    public void deleteOrder(Order order) {
+        orderRepository.delete(order);
+    }
 }
