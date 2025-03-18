@@ -20,15 +20,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 wishlistItem.classList.add("wishlist-item");
 
                 wishlistItem.innerHTML = `
-                <img src="${item.image}" alt="Product Image">
-                <div class="wishlist-info">
-                    <h2>${item.name}</h2>
-                    <p>${item.description}</p>
-                    <p class="price">${item.price} лв.</p>
-                    <button class="add-to-cart-btn" data-name="${item.name}" data-price="${item.price}" data-image="${item.image}">Добави в количката</button>
-                    <button class="remove-btn" data-id="${item.id}">Премахни</button>
-                </div>
-            `;
+                    <img src="${item.image}" alt="Product Image">
+                    <div class="wishlist-info">
+                        <h2>${item.name}</h2>
+                        <p>${item.description}</p>
+                        <p class="price">${item.price} лв.</p>
+                        <button class="add-to-cart-btn" data-id="${item.id}" data-name="${item.name}" data-price="${item.price}" data-image="${item.image}">Добави в количката</button>
+                        <button class="remove-btn" data-id="${item.id}">Премахни</button>
+                    </div>
+                `;
 
                 wishlistContainer.appendChild(wishlistItem);
             });
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             document.querySelectorAll(".add-to-cart-btn").forEach(button => {
                 button.addEventListener("click", function () {
-                    addToCartFromWishlist(this);
+                    openSizeSelectionModal(this);
                 });
             });
         }
@@ -59,27 +59,20 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         localStorage.setItem("wishlist", JSON.stringify(wishlist));
+        updateWishlistIcons();
     }
 
-    function removeFromWishlist(productId) {
-        let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-        wishlist = wishlist.filter(item => item.id !== productId);
-        localStorage.setItem("wishlist", JSON.stringify(wishlist));
-    }
-
-    function addToCartFromWishlist(button) {
-        const name = button.getAttribute("data-name");
-        const price = parseFloat(button.getAttribute("data-price"));
-        const image = button.getAttribute("data-image");
-
+    function addToCartFromWishlist(id, name, price, image, size) {
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-        let existingProduct = cart.find(item => item.name === name && item.image === image);
+        price = parseFloat(price);
+
+        let existingProduct = cart.find(item => item.name === name && item.image === image && item.size === size);
 
         if (existingProduct) {
             existingProduct.quantity += 1;
         } else {
-            cart.push({ name, price, image, quantity: 1 });
+            cart.push({ id, name, price, image, quantity: 1, size });
         }
 
         localStorage.setItem("cart", JSON.stringify(cart));
@@ -87,6 +80,12 @@ document.addEventListener("DOMContentLoaded", function () {
         showToast("Добавено в количката!", "https://cdn-icons-png.flaticon.com/128/14090/14090371.png");
     }
 
+
+    function removeFromWishlist(productId) {
+        let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+        wishlist = wishlist.filter(item => item.id !== productId);
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    }
 
     function updateWishlistIcons() {
         let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
@@ -119,8 +118,40 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    updateWishlistIcons();
-    loadWishlist();
+    function openSizeSelectionModal(button) {
+        const productId = button.getAttribute("data-id");
+        const productName = button.getAttribute("data-name");
+        const productPrice = button.getAttribute("data-price");
+        const productImage = button.getAttribute("data-image");
+
+        Swal.fire({
+            title: "Изберете размер",
+            html: `
+                <img src="${productImage}" alt="Product Image" width="120px" style="margin-bottom:10px;">
+                <h3>${productName}</h3>
+                <h3>${productPrice} лв.</h3>
+                <select id="size-dropdown" class="size-dropdown">
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                </select>
+            `,
+            showConfirmButton: true,
+            confirmButtonText: "Добави",
+            showCancelButton: true,
+            cancelButtonText: "Назад",
+            preConfirm: () => {
+                const size = document.getElementById("size-dropdown").value;
+                addToCartFromWishlist(productId, productName, productPrice, productImage, size);
+                return true;
+            },
+            customClass: {
+                confirmButton: 'custom-confirm-button',
+                cancelButton: 'custom-cancel-button'
+            }
+        });
+    }
 
     document.body.addEventListener("click", function (event) {
         if (event.target.classList.contains("wishlist-icon")) {
@@ -146,6 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
             loadWishlist();
         }
     });
+
+    updateWishlistIcons();
+    loadWishlist();
 });
-
-

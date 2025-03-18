@@ -18,12 +18,10 @@
         <img th:src="${cloth.imageUrl}" alt="Product Image">
         <h2 th:text="${cloth.description}"></h2>
         <select class="size-dropdown">
-            <option value="XS">XS</option>
             <option value="S">S</option>
             <option value="M">M</option>
             <option value="L">L</option>
             <option value="XL">XL</option>
-            <option value="XXL">XXL</option>
         </select>
         <p th:text="${cloth.price + ' лв.'}"></p>
         <button class="add-to-cart">Добави в количката</button>

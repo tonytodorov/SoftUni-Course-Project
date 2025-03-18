@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>
                     <input type="number" value="${item.quantity}" min="1" class="quantity" data-index="${index}" style="width: 50px; height: 20px; font-size: 16px; text-align: center;">
                 </td>
+                <td>${item.size}</td>
                 <td class="item-total">${itemTotal.toFixed(2)} лв.</td>
                 <td>
                     <button class="remove-item" data-index="${index}" style="color: red; font-size: 18px; border: none; background: none; cursor: pointer;">❌</button>

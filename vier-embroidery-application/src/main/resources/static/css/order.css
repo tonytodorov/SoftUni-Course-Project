@@ -64,7 +64,7 @@ html, body {
 
 .order-summary-table th,
 .order-summary-table td {
-    padding: 10px;
+    padding: 8px;
     text-align: center;
     border-bottom: 1px solid #ddd;
 }

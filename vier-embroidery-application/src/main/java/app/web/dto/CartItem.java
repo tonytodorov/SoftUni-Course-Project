@@ -13,4 +13,7 @@ public class CartItem {
 
     @NotNull
     private Integer quantity;
+
+    @NotNull
+    private String size;
 }

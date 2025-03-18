@@ -214,3 +214,25 @@ p.alert-warning {
     -webkit-text-fill-color: transparent;
     margin: 5px 0 0;
 }
+
+.size-dropdown {
+    padding: 10px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.size-dropdown option {
+    padding: 10px;
+    font-size: 14px;
+    background-color: #ffffff;
+}
+
+.size-dropdown:focus {
+    border-color: #a1621e;
+    box-shadow: 0 0 5px rgba(161, 98, 30, 0.5);
+}

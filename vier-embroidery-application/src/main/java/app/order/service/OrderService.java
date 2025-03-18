@@ -61,22 +61,6 @@ public class OrderService {
         savedOrder.setOrderItems(orderItems);
     }
 
-    private List<OrderItem> createOrderItems(OrderRequest orderRequest, Order order) {
-        return orderRequest.getCartItems().stream()
-                .map(cartItem -> {
-                    Product product = productService.findById(cartItem.getProductId());
-
-                    return OrderItem.builder()
-                            .order(order)
-                            .product(product)
-                            .quantity(cartItem.getQuantity())
-                            .price(product.getPrice())
-                            .totalPrice(product.getPrice().multiply(BigDecimal.valueOf(cartItem.getQuantity())))
-                            .build();
-                })
-                .collect(Collectors.toList());
-    }
-
     public List<Order> findByOrderDateBefore(LocalDateTime oneYearAgo) {
         return orderRepository.findByOrderDateBefore(oneYearAgo);
     }
@@ -87,5 +71,22 @@ public class OrderService {
 
     public void deleteOrder(Order order) {
         orderRepository.delete(order);
+    }
+
+    private List<OrderItem> createOrderItems(OrderRequest orderRequest, Order order) {
+        return orderRequest.getCartItems().stream()
+                .map(cartItem -> {
+                    Product product = productService.findById(cartItem.getProductId());
+
+                    return OrderItem.builder()
+                            .order(order)
+                            .product(product)
+                            .quantity(cartItem.getQuantity())
+                            .price(product.getPrice())
+                            .size(cartItem.getSize())
+                            .totalPrice(product.getPrice().multiply(BigDecimal.valueOf(cartItem.getQuantity())))
+                            .build();
+                })
+                .collect(Collectors.toList());
     }
 }

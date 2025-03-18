@@ -103,3 +103,30 @@ h1 {
 .wishlist-icon.active {
     color: red;
 }
+
+.custom-confirm-button {
+    width: 70%;
+    background-color: #a1621e;
+    color: white;
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 8px 16px;
+}
+
+.custom-confirm-button:hover {
+    background-color: #814d17;
+    transform: scale(1.05);
+}
+
+.custom-cancel-button {
+    width: 70%;
+    background-color: rgba(124, 124, 124, 0.8);
+    color: white;
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 8px 16px;
+}
+
+.custom-cancel-button:hover {
+    background-color: rgb(104, 104, 104);
+}

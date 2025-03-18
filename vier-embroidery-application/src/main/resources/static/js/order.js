@@ -4,6 +4,10 @@ function populateOrderSummary() {
 
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
+    if (window.location.pathname === "/order" && cartItems.length === 0) {
+        window.location.href = "/";
+    }
+
     cartItems.forEach(item => {
         const row = document.createElement('tr');
         const total = item.quantity * item.price;
@@ -13,30 +17,13 @@ function populateOrderSummary() {
             <td><img src="${item.image}" alt="${item.name}" class="order-img" style="width: 50px; height: 50px;"></td>
             <td>${item.name}</td>
             <td>${item.quantity}</td>
+            <td>${item.size}</td>
             <td>${item.price.toFixed(2)} лв.</td>
         `;
         orderSummaryItems.appendChild(row);
     });
 
     document.getElementById('order-total').textContent = totalAmount.toFixed(2) + ' лв.';
-}
-
-function validateForm(event) {
-    const form = document.getElementById('order-form');
-    const name = form.name.value.trim();
-    const surname = form.surname.value.trim();
-    const email = form.email.value.trim();
-    const phone = form.phone.value.trim();
-    const city = form.city.value.trim();
-    const address = form.address.value.trim();
-
-    if (!name || !surname || !email || !phone || !city || !address) {
-        alert("All fields must be filled out.");
-        event.preventDefault();
-        return false;
-    }
-
-    return true;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -56,7 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
             paymentMethod: "UPON_DELIVERY",
             cartItems: JSON.parse(localStorage.getItem("cart") || "[]").map(item => ({
                 productId: item.id,
-                quantity: item.quantity
+                quantity: item.quantity,
+                size: item.size
             }))
         };
 
@@ -77,13 +65,43 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(data => {
                 if (data) {
-                    alert('Order placed successfully!');
-                    window.location.href = '/';
-                    localStorage.clear()
+                    Swal.fire({
+                        toast: true,
+                        position: "top-end",
+                        iconHtml: `<img src="https://cdn-icons-png.flaticon.com/128/6815/6815043.png" alt="" width="50px" height="50px">`,
+                        title: "Успешно направена поръчка!",
+                        showConfirmButton: false,
+                        timer: 1500,
+                        timerProgressBar: true,
+                        background: "#fff",
+                        customClass: {
+                            popup: 'colored-toast'
+                        }
+                    });
+                    setTimeout(() => {
+                        window.location.href = '/';
+                        localStorage.removeItem("cart");
+                    }, 1600);
                 }
             })
             .catch(error => {
-                alert('An error occurred while placing the order.');
+                if (data) {
+                    Swal.fire({
+                        toast: true,
+                        position: "top-end",
+                        iconHtml: `<img src="https://cdn-icons-png.flaticon.com/128/10308/10308693.png" alt="" width="50px" height="50px">`,
+                        title: "Не успяхте да направите поръчка!",
+                        showConfirmButton: false,
+                        timer: 1200,
+                        timerProgressBar: true,
+                        background: "#fff",
+                        customClass: {
+                            popup: 'colored-toast'
+                        }
+                    });
+                    window.location.href = '/';
+                    localStorage.clear()
+                }
                 console.error(error);
                 window.location.href = '/order';
             });

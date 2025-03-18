@@ -8,15 +8,16 @@ document.addEventListener("DOMContentLoaded", function () {
             const name = product.getAttribute("data-name");
             const price = parseFloat(product.getAttribute("data-price"));
             const image = product.querySelector("img").src;
+            const size = product.querySelector(".size-dropdown").value;
 
             let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-            let existingProduct = cart.find(item => item.name === name && item.image === image);
+            let existingProduct = cart.find(item => item.name === name && item.image === image && item.size === size);
 
             if (existingProduct) {
                 existingProduct.quantity += 1;
             } else {
-                cart.push({ id, name, price, image, quantity: 1 });
+                cart.push({ id, name, price, image, quantity: 1, size });
             }
 
             localStorage.setItem("cart", JSON.stringify(cart));
@@ -33,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     popup: 'colored-toast'
                 }
             });
-
         });
     });
 });

@@ -26,6 +26,9 @@ public class Product {
     private BigDecimal price;
 
     @Column(nullable = false)
+    private String size;
+
+    @Column(nullable = false)
     private String imageUrl;
 
     @ManyToOne
