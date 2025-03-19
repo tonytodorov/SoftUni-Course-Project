@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поръчки</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+
+<th:block th:insert="fragments/header :: header"></th:block>
+<th:block th:insert="fragments/nav-bar :: nav-bar"></th:block>
+
+<div class="container">
+
+    <h1>Имейли на потребителя</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Имейл</th>
+            <th>Име</th>
+            <th>Фамилия</th>
+            <th>Телефон</th>
+            <th>Град</th>
+            <th>Адрес</th>
+            <th>Начин на плащане</th>
+            <th>Дата на поръчката</th>
+            <th>Статус</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${userOrders}">
+            <td th:text="${order.email}"></td>
+            <td th:text="${order.firstName}"></td>
+            <td th:text="${order.lastName}"></td>
+            <td th:text="${order.phoneNumber}"></td>
+            <td th:text="${order.city}"></td>
+            <td th:text="${order.address}"></td>
+            <td th:text="${order.paymentMethod == 'CASH_ON_DELIVERY' ? '' : 'Наложен платеж'}"></td>
+            <td th:text="${#temporals.format(order.orderDate, 'dd MMM yyyy HH:mm')}"></td>
+            <td th:text="${order.orderStatus}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/admin}" class="back-button">
+        <button th:href="@{/admin}" type="button">Обратно</button>
+    </a>
+</div>
+
+<th:block th:insert="fragments/footer :: footer"></th:block>
+
+</body>
+</html>

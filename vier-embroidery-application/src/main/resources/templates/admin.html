@@ -27,6 +27,7 @@
             <th>Създаден на</th>
             <th>Промяна на роля</th>
             <th>Имейли</th>
+            <th>Поръчки</th>
         </tr>
         </thead>
 
@@ -46,6 +47,11 @@
             </td>
             <td>
                 <form th:action="@{'/admin/' + ${user.email} + '/all-emails'}" th:method="GET">
+                    <button type="submit">Отвори</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{'/admin/' + ${user.id} + '/orders'}" th:method="GET">
                     <button type="submit">Отвори</button>
                 </form>
             </td>

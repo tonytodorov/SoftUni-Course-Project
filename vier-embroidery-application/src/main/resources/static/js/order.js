@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             phoneNumber: form.phone.value.trim(),
             city: form.city.value.trim(),
             address: form.address.value.trim(),
-            paymentMethod: "UPON_DELIVERY",
+            paymentMethod: "CASH_ON_DELIVERY",
             cartItems: JSON.parse(localStorage.getItem("cart") || "[]").map(item => ({
                 productId: item.id,
                 quantity: item.quantity,

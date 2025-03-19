@@ -1,3 +1,7 @@
+window.addEventListener("resize", () => {
+    document.body.style.paddingRight = "0px";
+});
+
 document.addEventListener("DOMContentLoaded", function () {
     const wishlistContainer = document.getElementById("wishlist-items");
     const emptyWishlistMessage = document.getElementById("empty-wishlist");
@@ -24,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="wishlist-info">
                         <h2>${item.name}</h2>
                         <p>${item.description}</p>
-                        <p class="price">${item.price} лв.</p>
                         <button class="add-to-cart-btn" data-id="${item.id}" data-name="${item.name}" data-price="${item.price}" data-image="${item.image}">Добави в количката</button>
                         <button class="remove-btn" data-id="${item.id}">Премахни</button>
                     </div>
@@ -114,6 +117,12 @@ document.addEventListener("DOMContentLoaded", function () {
             background: "#fff",
             customClass: {
                 popup: 'colored-toast'
+            },
+            didOpen: () => {
+                document.body.style.paddingRight = "0px";
+            },
+            willClose: () => {
+                document.body.style.paddingRight = "0px";
             }
         });
     }
@@ -149,6 +158,12 @@ document.addEventListener("DOMContentLoaded", function () {
             customClass: {
                 confirmButton: 'custom-confirm-button',
                 cancelButton: 'custom-cancel-button'
+            },
+            didOpen: () => {
+                document.body.style.paddingRight = "0px";
+            },
+            willClose: () => {
+                document.body.style.paddingRight = "0px";
             }
         });
     }

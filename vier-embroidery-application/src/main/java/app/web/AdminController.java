@@ -2,6 +2,8 @@ package app.web;
 
 import app.email.client.dto.EmailResponse;
 import app.email.service.EmailService;
+import app.order.model.Order;
+import app.order.service.OrderService;
 import app.security.AuthenticationDetails;
 import app.user.model.User;
 import app.user.service.UserService;
@@ -23,11 +25,13 @@ public class AdminController {
 
     private final UserService userService;
     private final EmailService emailService;
+    private final OrderService orderService;
 
     @Autowired
-    public AdminController(UserService userService, EmailService emailService) {
+    public AdminController(UserService userService, EmailService emailService, OrderService orderService) {
         this.userService = userService;
         this.emailService = emailService;
+        this.orderService = orderService;
     }
 
     @GetMapping
@@ -58,6 +62,18 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("userEmails", userEmails);
         modelAndView.setViewName("email");
+
+        return modelAndView;
+    }
+
+    @GetMapping("/{userId}/orders")
+    public ModelAndView getUserOrders(@PathVariable UUID userId) {
+
+        List<Order> userOrders = orderService.getUserOrders(userId);
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("userOrders", userOrders);
+        modelAndView.setViewName("user-orders");
 
         return modelAndView;
     }

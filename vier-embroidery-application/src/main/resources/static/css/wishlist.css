@@ -11,6 +11,11 @@ html, body {
     padding: 0;
 }
 
+body.swal2-toast-shown {
+    padding-right: 0 !important;
+    overflow: auto !important;
+}
+
 .wishlist-container {
     flex: 1;
     max-width: 900px;
@@ -64,6 +69,7 @@ h1 {
 }
 
 .wishlist-info p {
+    padding-top: 5px;
     margin: 5px 0;
     color: #555;
 }
@@ -104,29 +110,6 @@ h1 {
     color: red;
 }
 
-.custom-confirm-button {
-    width: 70%;
-    background-color: #a1621e;
-    color: white;
-    border-radius: 8px;
-    font-size: 14px;
-    padding: 8px 16px;
-}
-
-.custom-confirm-button:hover {
-    background-color: #814d17;
-    transform: scale(1.05);
-}
-
-.custom-cancel-button {
-    width: 70%;
-    background-color: rgba(124, 124, 124, 0.8);
-    color: white;
-    border-radius: 8px;
-    font-size: 14px;
-    padding: 8px 16px;
-}
-
-.custom-cancel-button:hover {
-    background-color: rgb(104, 104, 104);
+button {
+    margin: 20px auto;
 }

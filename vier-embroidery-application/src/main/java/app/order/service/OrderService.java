@@ -47,7 +47,7 @@ public class OrderService {
                 .phoneNumber(orderRequest.getPhoneNumber())
                 .city(orderRequest.getCity())
                 .address(orderRequest.getAddress())
-                .paymentMethod(PaymentMethod.UPON_DELIVERY)
+                .paymentMethod(PaymentMethod.CASH_ON_DELIVERY)
                 .orderDate(LocalDateTime.now())
                 .orderStatus(OrderStatus.PENDING)
                 .user(user)
@@ -71,6 +71,10 @@ public class OrderService {
 
     public void deleteOrder(Order order) {
         orderRepository.delete(order);
+    }
+
+    public List<Order> getUserOrders(UUID userId) {
+        return orderRepository.findAllByUserId(userId);
     }
 
     private List<OrderItem> createOrderItems(OrderRequest orderRequest, Order order) {
