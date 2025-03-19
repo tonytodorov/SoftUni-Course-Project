@@ -2,6 +2,7 @@ package app.user.service;
 
 import app.email.service.EmailService;
 import app.exception.DomainException;
+import app.exception.EmailAlreadyExistException;
 import app.security.AuthenticationDetails;
 import app.user.model.User;
 import app.user.model.UserRole;
@@ -51,7 +52,7 @@ public class UserService implements UserDetailsService {
         Optional<User> optionalUser = userRepository.findByEmail(registerRequest.getEmail());
 
         if (optionalUser.isPresent()) {
-            throw new DomainException("User with email [%s] already exist!".formatted(registerRequest.getEmail()));
+            throw new EmailAlreadyExistException("Email [%s] already exist!".formatted(registerRequest.getEmail()));
         }
 
         User user = userRepository.save(initializeUser(registerRequest));
@@ -63,7 +64,7 @@ public class UserService implements UserDetailsService {
         return User.builder()
                 .email(registerRequest.getEmail())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
-                .userRole(UserRole.USER)
+                .userRole(UserRole.ROLE_USER)
                 .createdOn(LocalDateTime.now())
                 .build();
     }
@@ -92,10 +93,10 @@ public class UserService implements UserDetailsService {
 
         User user = getUserById(userId);
 
-        if (user.getUserRole() == UserRole.USER) {
-            user.setUserRole(UserRole.ADMIN);
+        if (user.getUserRole() == UserRole.ROLE_USER) {
+            user.setUserRole(UserRole.ROLE_ADMIN);
         } else {
-            user.setUserRole(UserRole.USER);
+            user.setUserRole(UserRole.ROLE_USER);
         }
 
         userRepository.save(user);

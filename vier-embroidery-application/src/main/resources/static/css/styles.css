@@ -238,7 +238,7 @@ p.alert-warning {
 }
 
 .custom-confirm-button {
-    width: 70%;
+    width: 90%;
     background-color: #a1621e;
     color: white;
     border-radius: 8px;
@@ -252,7 +252,7 @@ p.alert-warning {
 }
 
 .custom-cancel-button {
-    width: 70%;
+    width: 90%;
     background-color: rgba(124, 124, 124, 0.8);
     color: white;
     border-radius: 8px;

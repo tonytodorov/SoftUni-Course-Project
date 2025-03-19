@@ -23,7 +23,7 @@ public class AuthenticationDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + userRole.name());
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userRole.name());
 
         return List.of(authority);
     }

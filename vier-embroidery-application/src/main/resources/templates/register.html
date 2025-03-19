@@ -20,6 +20,7 @@
         <label for="email">Твоят имейл</label>
         <input type="email" id="email" name="email" required th:field="*{email}">
         <p class="alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+        <p class="alert-warning" th:text="${emailAlreadyExistMessage}"></p>
 
         <label for="password">Парола</label>
         <input type="password" id="password" name="password" required th:field="*{password}">

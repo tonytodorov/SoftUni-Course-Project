@@ -9,6 +9,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.nio.file.AccessDeniedException;
+
 @Configuration
 @EnableMethodSecurity
 public class WebMvcConfiguration implements WebMvcConfigurer {
@@ -26,13 +28,12 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
                         .requestMatchers("/", "/register", "/women", "/mens", "/kids", "/contact", "/about-us", "/wishlist").permitAll()
                         .anyRequest().authenticated()
                 )
-
                 .formLogin(form -> form
                         .loginPage("/login")
                         .usernameParameter("email")
                         .passwordParameter("password")
                         .defaultSuccessUrl("/")
-                        .failureUrl("/login?error")
+                        .failureUrl("/login/error")
                         .permitAll()
                 )
 
