@@ -18,7 +18,7 @@
             <a sec:authorize="isAnonymous()" th:href="@{/login}"><img src="https://cdn-icons-png.flaticon.com/128/1828/1828395.png" alt=""></a>
             <a sec:authorize="isAnonymous()" th:href="@{/register}"><img src="https://cdn-icons-png.flaticon.com/128/14608/14608081.png" alt=""></a>
             <a sec:authorize="isAuthenticated()" th:href="@{/user}"><img src="https://cdn-icons-png.flaticon.com/128/1144/1144760.png" alt=""></a>
-            <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}"><img src="https://cdn-icons-png.flaticon.com/128/11830/11830726.png" alt=""></a>
+            <a sec:authorize="isAuthenticated()" th:href="@{/admin}"><img src="https://cdn-icons-png.flaticon.com/128/11830/11830726.png" alt=""></a>
             <a th:href="@{/wishlist}"><img src="https://cdn-icons-png.flaticon.com/128/13369/13369080.png" alt=""></a>
             <a th:href="@{/shopping-cart}"><img src="https://cdn-icons-png.flaticon.com/512/846/846423.png" alt=""></a>
             <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><img src="https://cdn-icons-png.flaticon.com/128/1828/1828427.png" alt=""></a>

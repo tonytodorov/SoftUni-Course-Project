@@ -18,6 +18,7 @@
     <div class="profile-card">
         <div class="profile-info">
             <p><strong>Имейл:</strong> <span th:text="${user.email}"></span></p>
+            <p><strong>Роля:</strong> <span th:text="${#strings.capitalize(#strings.toLowerCase(user.role))}"></span></p>
             <p><strong>Име:</strong> <span th:text="${user.firstName}"></span></p>
             <p><strong>Фамилия:</strong> <span th:text="${user.lastName}"></span></p>
             <p><strong>Телефон:</strong> <span th:text="${user.phoneNumber}"></span></p>

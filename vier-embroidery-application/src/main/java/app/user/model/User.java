@@ -37,7 +37,7 @@ public class User {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private UserRole userRole;
+    private UserRole role;
 
     @Column(nullable = false)
     private LocalDateTime createdOn;

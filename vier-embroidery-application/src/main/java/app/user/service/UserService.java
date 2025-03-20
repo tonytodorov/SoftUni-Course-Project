@@ -46,7 +46,7 @@ public class UserService implements UserDetailsService {
                 .findByEmail(email)
                 .orElseThrow(() -> new DomainException("User [%s] does not exist!".formatted(email)));
 
-        return new AuthenticationDetails(user.getId(), email, user.getPassword(), user.getUserRole());
+        return new AuthenticationDetails(user.getId(), email, user.getPassword(), user.getRole());
     }
 
     public void register(RegisterRequest registerRequest) {
@@ -65,7 +65,7 @@ public class UserService implements UserDetailsService {
         return User.builder()
                 .email(registerRequest.getEmail())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
-                .userRole(UserRole.ROLE_USER)
+                .role(UserRole.USER)
                 .createdOn(LocalDateTime.now())
                 .build();
     }
@@ -94,10 +94,10 @@ public class UserService implements UserDetailsService {
 
         User user = getUserById(userId);
 
-        if (user.getUserRole() == UserRole.ROLE_USER) {
-            user.setUserRole(UserRole.ROLE_ADMIN);
+        if (user.getRole() == UserRole.USER) {
+            user.setRole(UserRole.ADMIN);
         } else {
-            user.setUserRole(UserRole.ROLE_USER);
+            user.setRole(UserRole.USER);
         }
 
         userRepository.save(user);

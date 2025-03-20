@@ -34,12 +34,17 @@ public class GlobalExceptionHandler {
         return "redirect:/edit-profile";
     }
 
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ExceptionHandler(AccessDeniedException.class)
+    public ModelAndView handleAccessDeniedException(Exception exception) {
+        return new ModelAndView("access-denied");
+    }
+
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler({
-            AccessDeniedException.class,
             NoResourceFoundException.class,
             MethodArgumentTypeMismatchException.class,
-            MissingRequestValueException.class,
+            MissingRequestValueException.class
     })
     public ModelAndView handleNotFoundExceptions(Exception exception) {
         return new ModelAndView("not-found");
