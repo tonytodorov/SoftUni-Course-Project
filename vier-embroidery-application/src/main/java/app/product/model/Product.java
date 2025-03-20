@@ -30,4 +30,7 @@ public class Product {
 
     @ManyToOne
     private Category category;
+
+    @ManyToOne
+    private ProductCategory productCategory;
 }

@@ -3,6 +3,7 @@ package app.user.service;
 import app.email.service.EmailService;
 import app.exception.DomainException;
 import app.exception.EmailAlreadyExistException;
+import app.exception.UserNotExistException;
 import app.security.AuthenticationDetails;
 import app.user.model.User;
 import app.user.model.UserRole;
@@ -70,7 +71,7 @@ public class UserService implements UserDetailsService {
     }
 
     public User getUserById(UUID userId) {
-        return userRepository.findById(userId).orElseThrow(() -> new DomainException("User with id [%s] does not exist.".formatted(userId)));
+        return userRepository.findById(userId).orElseThrow(() -> new UserNotExistException("User with id [%s] does not exist.".formatted(userId)));
     }
 
     public void editProfile(UUID userId, UserEditRequest userEditRequest) {

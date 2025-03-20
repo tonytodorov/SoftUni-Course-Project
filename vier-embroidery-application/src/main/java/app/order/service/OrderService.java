@@ -7,6 +7,7 @@ import app.order.model.PaymentMethod;
 import app.order.repository.OrderItemRepository;
 import app.order.repository.OrderRepository;
 import app.product.model.Product;
+import app.product.model.ProductCategory;
 import app.product.service.ProductService;
 import app.user.model.User;
 import app.user.service.UserService;
@@ -85,6 +86,7 @@ public class OrderService {
                     return OrderItem.builder()
                             .order(order)
                             .product(product)
+                            .productCategory(product.getProductCategory())
                             .quantity(cartItem.getQuantity())
                             .price(product.getPrice())
                             .size(cartItem.getSize())

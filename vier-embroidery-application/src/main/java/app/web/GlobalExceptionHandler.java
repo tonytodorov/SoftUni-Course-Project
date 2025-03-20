@@ -1,6 +1,7 @@
 package app.web;
 
 import app.exception.EmailAlreadyExistException;
+import app.exception.UserNotExistException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MissingRequestValueException;
@@ -24,8 +25,18 @@ public class GlobalExceptionHandler {
         return "redirect:/register";
     }
 
+    @ExceptionHandler(UserNotExistException.class)
+    public String handleUserNotFound(RedirectAttributes redirectAttributes, UserNotExistException exception) {
+
+        String message = exception.getMessage();
+
+        redirectAttributes.addFlashAttribute("userNotExistMessage", message);
+        return "redirect:/edit-profile";
+    }
+
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler({
+            AccessDeniedException.class,
             NoResourceFoundException.class,
             MethodArgumentTypeMismatchException.class,
             MissingRequestValueException.class,
