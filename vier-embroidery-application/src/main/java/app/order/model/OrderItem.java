@@ -20,15 +20,6 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @ManyToOne
-    private Order order;
-
-    @ManyToOne
-    private Product product;
-
-    @ManyToOne
-    private ProductCategory productCategory;
-
     @Column(nullable = false)
     private Integer quantity;
 
@@ -41,4 +32,12 @@ public class OrderItem {
     @Column(nullable = false)
     private BigDecimal totalPrice;
 
+    @ManyToOne
+    private Order order;
+
+    @ManyToOne
+    private Product product;
+
+    @ManyToOne
+    private ProductCategory productCategory;
 }

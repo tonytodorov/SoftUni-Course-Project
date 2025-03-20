@@ -62,8 +62,8 @@ public class OrderService {
         savedOrder.setOrderItems(orderItems);
     }
 
-    public List<Order> findByOrderDateBefore(LocalDateTime oneYearAgo) {
-        return orderRepository.findByOrderDateBefore(oneYearAgo);
+    public List<Order> findByOrderDateBefore(LocalDateTime twoYearsAgo) {
+        return orderRepository.findByOrderDateBefore(twoYearsAgo);
     }
 
     public void deleteOrderItem(OrderItem orderItem) {

@@ -11,7 +11,7 @@ import java.util.UUID;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, UUID> {
 
-    List<Order> findByOrderDateBefore(LocalDateTime oneYearAgo);
+    List<Order> findByOrderDateBefore(LocalDateTime time);
 
     List<Order> findAllByUserId(UUID userId);
 }

@@ -23,9 +23,9 @@ public class OrderDeleteScheduler {
     @Scheduled(cron = "0 0 2 * * *")
     public void cleanUpOldOrders() {
 
-        LocalDateTime oneYearAgo = LocalDateTime.now().minusYears(2);
+        LocalDateTime twoYearsAgo = LocalDateTime.now().minusYears(2);
 
-        List<Order> oldOrders = orderService.findByOrderDateBefore(oneYearAgo);
+        List<Order> oldOrders = orderService.findByOrderDateBefore(twoYearsAgo);
 
         oldOrders.forEach(order -> {
             List<OrderItem> orderItems = order.getOrderItems();
