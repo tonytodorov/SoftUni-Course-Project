@@ -21,27 +21,21 @@
 
             <label for="name">Име</label>
             <input type="text" id="name" name="name" required th:field="*{firstName}">
-            <p class="alert-warning" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></p>
 
             <label for="surname">Фамилия</label>
             <input type="text" id="surname" name="surname" required th:field="*{lastName}">
-            <p class="alert-warning" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
 
             <label for="email">Имейл</label>
             <input type="email" id="email" name="email" required th:field="*{email}">
-            <p class="alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
 
             <label for="phone">Телефон</label>
             <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required th:field="*{phoneNumber}">
-            <p class="alert-warning" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></p>
 
             <label for="city">Град</label>
             <input type="text" id="city" name="city" required th:field="*{city}">
-            <p class="alert-warning" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></p>
 
             <label for="address">Адрес</label>
             <input type="text" id="address" name="address" required th:field="*{address}">
-            <p class="alert-warning" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
         </div>
 
         <div class="order-section">

@@ -1,6 +1,5 @@
 package app.category.model;
 
-
 import app.product.model.Product;
 import jakarta.persistence.*;
 import lombok.*;

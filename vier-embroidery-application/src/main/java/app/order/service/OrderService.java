@@ -81,7 +81,7 @@ public class OrderService {
     private List<OrderItem> createOrderItems(OrderRequest orderRequest, Order order) {
         return orderRequest.getCartItems().stream()
                 .map(cartItem -> {
-                    Product product = productService.findById(cartItem.getProductId());
+                    Product product = productService.findById(cartItem.getId());
 
                     return OrderItem.builder()
                             .order(order)

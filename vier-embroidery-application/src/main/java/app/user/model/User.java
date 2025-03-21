@@ -15,6 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+// @Table(name = "users") - защото в H2 user е keyword
 public class User {
 
     @Id

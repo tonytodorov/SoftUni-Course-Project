@@ -105,3 +105,33 @@ html, body {
     background-color: #814d17;
     transform: scale(1.05);
 }
+
+.colored-toast {
+    font-family: Arial, sans-serif;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.swal2-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.swal2-html-container {
+    font-size: 18px;
+}
+
+.swal2-confirm {
+    width: 100%;
+    color: white;
+    background: #a1621e;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+.swal2-confirm:hover {
+    background-color: #814d17;
+    transform: scale(1.05);
+}
+
+

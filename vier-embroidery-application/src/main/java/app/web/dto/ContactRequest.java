@@ -9,13 +9,13 @@ import lombok.Data;
 public class ContactRequest {
 
     @NotNull
-    @Size(max = 50, message = "Title must be max 50 symbols")
+    @Size(max = 50, message = "Title must be max 50 symbols.")
     private String title;
 
     @Email
     private String email;
 
     @NotNull
-    @Size(max = 800, message = "Message must be max 800 symbols")
+    @Size(max = 800, message = "Message must be max 800 symbols.")
     private String message;
 }
