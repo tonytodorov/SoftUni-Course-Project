@@ -20,7 +20,7 @@ public class ProductCategory {
     private UUID id;
 
     @Column(nullable = false)
-    private String productType;
+    private String productCategory;
 
     @OneToMany(mappedBy = "productCategory", fetch = FetchType.EAGER)
     private List<Product> products = new ArrayList<>();

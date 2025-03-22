@@ -12,8 +12,8 @@ html, body {
 }
 
 body.swal2-toast-shown {
-    padding-right: 0 !important;
-    overflow: auto !important;
+    padding-right: 0;
+    overflow: auto ;
 }
 
 .wishlist-container {

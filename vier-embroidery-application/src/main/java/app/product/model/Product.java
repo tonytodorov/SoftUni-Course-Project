@@ -23,10 +23,10 @@ public class Product {
     private String description;
 
     @Column(nullable = false)
-    private BigDecimal price;
+    private String imageUrl;
 
     @Column(nullable = false)
-    private String imageUrl;
+    private BigDecimal price;
 
     @ManyToOne
     private Category category;

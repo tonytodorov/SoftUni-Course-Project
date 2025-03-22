@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Продукти</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/products.css">
+</head>
+<body>
+
+<th:block th:insert="fragments/header :: header"></th:block>
+<th:block th:insert="fragments/nav-bar :: nav-bar"></th:block>
+
+<div class="container">
+    <h1>Продукти</h1>
+
+    <div class="buttons">
+        <form th:action="@{/products/add-product}" th:method="GET">
+            <button type="submit">Добави продукт</button>
+        </form>
+
+        <form th:action="@{/products/add-category}" th:method="GET">
+            <button type="submit">Добави категория</button>
+        </form>
+    </div>
+</div>
+
+<th:block th:insert="fragments/footer :: footer"></th:block>
+
+</body>
+</html>

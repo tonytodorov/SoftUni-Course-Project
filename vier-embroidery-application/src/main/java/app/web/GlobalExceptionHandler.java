@@ -1,6 +1,7 @@
 package app.web;
 
 import app.exception.EmailAlreadyExistException;
+import app.exception.ProductCategoryAlreadyExistException;
 import app.exception.UserNotExistException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
@@ -23,6 +24,15 @@ public class GlobalExceptionHandler {
 
         redirectAttributes.addFlashAttribute("emailAlreadyExistMessage", message);
         return "redirect:/register";
+    }
+
+    @ExceptionHandler(ProductCategoryAlreadyExistException.class)
+    public String handleProductCategoryAlreadyExist(RedirectAttributes redirectAttributes, ProductCategoryAlreadyExistException exception) {
+
+        String message = exception.getMessage();
+
+        redirectAttributes.addFlashAttribute("productCategoryAlreadyExistMessage", message);
+        return "redirect:/products/add-category";
     }
 
     @ExceptionHandler(UserNotExistException.class)

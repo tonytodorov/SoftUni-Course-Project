@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Администратор</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/edit-profile.css">
+</head>
+
+<body>
+
+<th:block th:insert="fragments/header :: header"></th:block>
+<th:block th:insert="fragments/nav-bar :: nav-bar"></th:block>
+
+<div class="container">
+    <h2>Добави продукт</h2>
+    <form th:action="@{/products/add-product}" th:method="POST" th:object="${addProductRequest}">
+        <div class="form-group">
+            <label for="description">Описание</label>
+            <input type="text" id="description" name="description" required th:field="*{description}">
+            <p class="alert-warning" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+
+            <label for="image">Снимка</label>
+            <input type="text" id="image" name="image" required th:field="*{imageUrl}">
+            <p class="alert-warning" th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}"></p>
+
+            <label for="price">Цена</label>
+            <input type="text" id="price" name="price" required th:field="*{price}">
+            <p class="alert-warning" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></p>
+
+            <label for="category">Категория</label>
+            <select name="category" id="category" th:field="*{category}">
+                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+            </select>
+
+            <label for="productCategory">Категория на продукта</label>
+            <select name="productCategory" id="productCategory" th:field="*{productCategory}">
+                <option th:each="category : ${productCategoryList}" th:value="${category.id}" th:text="${category.productCategory}"></option>
+            </select>
+
+            <button type="submit">Добави</button>
+        </div>
+    </form>
+</div>
+
+<th:block th:insert="fragments/footer :: footer"></th:block>
+
+</body>
+</html>

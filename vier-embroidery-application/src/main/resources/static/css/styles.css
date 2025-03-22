@@ -215,7 +215,12 @@ p.alert-warning {
     margin: 5px 0 0;
 }
 
-.size-dropdown {
+#category, #productCategory {
+    display: flex;
+    margin: 20px auto;
+}
+
+.size-dropdown, #category, #productCategory {
     padding: 10px;
     font-size: 14px;
     font-family: Arial, sans-serif;
@@ -226,13 +231,13 @@ p.alert-warning {
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.size-dropdown option {
+.size-dropdown option, #category option, #productCategory option {
     padding: 10px;
     font-size: 14px;
     background-color: #ffffff;
 }
 
-.size-dropdown:focus {
+.size-dropdown:focus, #category:focus, #productCategory:focus {
     border-color: #a1621e;
     box-shadow: 0 0 5px rgba(161, 98, 30, 0.5);
 }

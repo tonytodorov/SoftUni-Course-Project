@@ -1,0 +1,11 @@
+.container {
+    flex: 1;
+}
+
+label {
+    margin: 40px 0 10px 0;
+}
+
+button {
+    margin: 30px auto;
+}
