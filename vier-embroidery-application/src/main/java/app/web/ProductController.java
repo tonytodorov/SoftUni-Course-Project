@@ -19,6 +19,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/products")
+@PreAuthorize("hasRole('ADMIN')")
 public class ProductController {
 
     private final ProductService productService;
@@ -29,7 +30,6 @@ public class ProductController {
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
     public String getProductsPage() {
         return "products";
     }

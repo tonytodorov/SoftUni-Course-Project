@@ -20,6 +20,7 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/admin")
+@PreAuthorize("hasRole('ADMIN')")
 public class AdminController {
 
     private final UserService userService;
@@ -34,7 +35,6 @@ public class AdminController {
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
     public ModelAndView getAdminPage() {
 
         List<User> users = userService.getAllUsers();

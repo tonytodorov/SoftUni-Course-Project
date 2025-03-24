@@ -11,6 +11,7 @@ import app.user.repository.UserRepository;
 import app.web.dto.ContactRequest;
 import app.web.dto.RegisterRequest;
 import app.web.dto.UserEditRequest;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -39,17 +40,9 @@ public class UserService implements UserDetailsService {
         this.emailService = emailService;
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    @Transactional
+    public User register(RegisterRequest registerRequest) {
 
-        User user = userRepository
-                .findByEmail(email)
-                .orElseThrow(() -> new DomainException("User [%s] does not exist!".formatted(email)));
-
-        return new AuthenticationDetails(user.getId(), email, user.getPassword(), user.getRole());
-    }
-
-    public void register(RegisterRequest registerRequest) {
         Optional<User> optionalUser = userRepository.findByEmail(registerRequest.getEmail());
 
         if (optionalUser.isPresent()) {
@@ -59,22 +52,11 @@ public class UserService implements UserDetailsService {
         User user = userRepository.save(initializeUser(registerRequest));
 
         log.info("User [%s] has been created!".formatted(user.getEmail()));
+
+        return user;
     }
 
-    private User initializeUser(RegisterRequest registerRequest) {
-        return User.builder()
-                .email(registerRequest.getEmail())
-                .password(passwordEncoder.encode(registerRequest.getPassword()))
-                .role(UserRole.USER)
-                .createdOn(LocalDateTime.now())
-                .build();
-    }
-
-    public User getUserById(UUID userId) {
-        return userRepository.findById(userId).orElseThrow(() -> new UserNotExistException("User with id [%s] does not exist.".formatted(userId)));
-    }
-
-    public void editProfile(UUID userId, UserEditRequest userEditRequest) {
+    public void editUserDetails(UUID userId, UserEditRequest userEditRequest) {
 
         User user = getUserById(userId);
 
@@ -110,5 +92,28 @@ public class UserService implements UserDetailsService {
         String message = contactRequest.getMessage();
 
         emailService.sendEmail(title, email, message);
+    }
+
+    public User getUserById(UUID userId) {
+        return userRepository.findById(userId).orElseThrow(() -> new UserNotExistException("User with id [%s] does not exist.".formatted(userId)));
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+
+        User user = userRepository
+                .findByEmail(email)
+                .orElseThrow(() -> new DomainException("User [%s] does not exist!".formatted(email)));
+
+        return new AuthenticationDetails(user.getId(), email, user.getPassword(), user.getRole());
+    }
+
+    private User initializeUser(RegisterRequest registerRequest) {
+        return User.builder()
+                .email(registerRequest.getEmail())
+                .password(passwordEncoder.encode(registerRequest.getPassword()))
+                .role(UserRole.USER)
+                .createdOn(LocalDateTime.now())
+                .build();
     }
 }

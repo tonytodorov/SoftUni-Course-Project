@@ -1,17 +1,21 @@
 package app.web.dto;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddCategoryRequest {
+public class CartItemRequest {
 
-    @NotNull(message = "Field cannot be null.")
-    private String productCategory;
+    private UUID id;
+
+    private Integer quantity;
+
+    private String size;
 }

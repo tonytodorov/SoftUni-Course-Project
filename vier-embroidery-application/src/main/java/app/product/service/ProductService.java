@@ -46,6 +46,14 @@ public class ProductService {
         return productRepository.findProductById(productId);
     }
 
+    public List<ProductCategory> getAllProductCategories() {
+        return productCategoryRepository.findAll();
+    }
+
+    public List<Category> getAllCategories() {
+        return categoryService.getAllCategories();
+    }
+
     public void addCategory(AddCategoryRequest addCategoryRequest) {
 
         Optional<ProductCategory> optionalProductCategory = productCategoryRepository.findByProductCategory(addCategoryRequest.getProductCategory());
@@ -59,14 +67,6 @@ public class ProductService {
                 .build();
 
         productCategoryRepository.save(productCategory);
-    }
-
-    public List<ProductCategory> getAllProductCategories() {
-        return productCategoryRepository.findAll();
-    }
-
-    public List<Category> getAllCategories() {
-        return categoryService.findAll();
     }
 
     public void addProduct(AddProductRequest addProductRequest) {

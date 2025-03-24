@@ -65,7 +65,7 @@ public class UserController {
             return modelAndView;
         }
 
-        userService.editProfile(userId, userEditRequest);
+        userService.editUserDetails(userId, userEditRequest);
 
         return new ModelAndView("redirect:/user");
     }
