@@ -16,7 +16,7 @@
 
 <div class="container">
     <h2>Добави категория</h2>
-    <form th:action="@{/products/add-category}" th:method="POST" th:object="${addProductCategory}">
+    <form th:action="@{/products/add-category}" th:method="POST" th:object="${addCategoryRequest}">
         <div class="form-group">
             <label for="category">Име на категория</label>
             <input type="text" id="category" name="category" required th:field="*{productCategory}">

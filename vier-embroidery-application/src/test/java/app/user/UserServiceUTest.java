@@ -1,6 +1,5 @@
 package app.user;
 
-import app.email.client.dto.EmailResponse;
 import app.email.service.EmailService;
 import app.exception.DomainException;
 import app.exception.EmailAlreadyExistException;
@@ -17,8 +16,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -49,7 +46,6 @@ public class UserServiceUTest {
     void givenExistingUsersInDatabase_whenGetAllUsers_thenReturnThemAll() {
 
         List<User> userList = List.of(new User(), new User(), new User());
-
         when(userRepository.findAll()).thenReturn(userList);
 
         List<User> users = userService.getAllUsers();
@@ -61,7 +57,7 @@ public class UserServiceUTest {
     void givenExistingUsername_whenRegister_thenExceptionIsThrown() {
 
         RegisterRequest registerRequest = RegisterRequest.builder()
-                .email("ttodorov11@abv.bg")
+                .email("test@abv.bg")
                 .password("test")
                 .build();
 
@@ -76,7 +72,7 @@ public class UserServiceUTest {
     void givenExistingUsername_whenRegister_thenRegisterUser() {
 
         RegisterRequest registerRequest = RegisterRequest.builder()
-                .email("ttodorov11@abv.bg")
+                .email("test@abv.bg")
                 .password("test")
                 .build();
 
@@ -182,7 +178,7 @@ public class UserServiceUTest {
     @Test
     void givenExistingUser_whenLoadUserByUsername_thenReturnCorrectAuthenticationMetadata() {
 
-        String email = "ttodorov11@abv.bg";
+        String email = "test@abv.bg";
 
         User user = User.builder()
                 .id(UUID.randomUUID())

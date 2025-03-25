@@ -62,7 +62,7 @@ public class IndexController {
     }
 
     @PostMapping("/register")
-    public String registerNewUser(@Valid RegisterRequest registerRequest, BindingResult bindingResult) {
+    public String register(@Valid RegisterRequest registerRequest, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "register";
@@ -73,13 +73,13 @@ public class IndexController {
         return "redirect:/login";
     }
 
-    @GetMapping("/women")
-    public ModelAndView getWomenPage() {
-
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("women");
+    @GetMapping("/womens")
+    public ModelAndView getWomensPage() {
 
         List<Product> womenClothes = productService.getWomenClothes();
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("womens");
         modelAndView.addObject("womenClothes", womenClothes);
 
         return modelAndView;
@@ -88,10 +88,10 @@ public class IndexController {
     @GetMapping("/mens")
     public ModelAndView getMensPage() {
 
+        List<Product> mensClothes = productService.getMensClothes();
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("mens");
-
-        List<Product> mensClothes = productService.getMensClothes();
         modelAndView.addObject("mensClothes", mensClothes);
 
         return modelAndView;
@@ -100,10 +100,10 @@ public class IndexController {
     @GetMapping("/kids")
     public ModelAndView getKidsPage() {
 
+        List<Product> kidsClothes = productService.getKidsClothes();
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("kids");
-
-        List<Product> kidsClothes = productService.getKidsClothes();
         modelAndView.addObject("kidsClothes", kidsClothes);
 
         return modelAndView;

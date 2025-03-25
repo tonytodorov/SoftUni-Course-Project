@@ -61,7 +61,7 @@ public class AdminController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("userEmails", userEmails);
-        modelAndView.setViewName("email");
+        modelAndView.setViewName("user-emails");
 
         return modelAndView;
     }

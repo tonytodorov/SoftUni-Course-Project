@@ -32,7 +32,7 @@ public class UserController {
         User user = userService.getUserById(authenticationDetails.getId());
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/user");
+        modelAndView.setViewName("user");
         modelAndView.addObject("user", user);
 
         return modelAndView;

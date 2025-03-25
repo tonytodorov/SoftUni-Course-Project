@@ -1,10 +1,7 @@
 package app.security;
 
 import app.user.model.UserRole;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +13,7 @@ import java.util.UUID;
 @Data
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class AuthenticationDetails implements UserDetails {
 
     private UUID id;

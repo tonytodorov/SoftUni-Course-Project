@@ -8,10 +8,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableFeignClients
 @EnableScheduling
 @SpringBootApplication
-public class VierEmbroideryApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(VierEmbroideryApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
-
 }

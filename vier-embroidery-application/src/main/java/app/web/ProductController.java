@@ -66,7 +66,7 @@ public class ProductController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("add-category");
-        modelAndView.addObject("addProductCategory", new AddCategoryRequest());
+        modelAndView.addObject("addCategoryRequest", new AddCategoryRequest());
 
         return modelAndView;
     }
