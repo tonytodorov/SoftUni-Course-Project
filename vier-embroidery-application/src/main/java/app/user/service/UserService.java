@@ -40,7 +40,6 @@ public class UserService implements UserDetailsService {
         this.emailService = emailService;
     }
 
-    @Transactional
     public User register(RegisterRequest registerRequest) {
 
         Optional<User> optionalUser = userRepository.findByEmail(registerRequest.getEmail());

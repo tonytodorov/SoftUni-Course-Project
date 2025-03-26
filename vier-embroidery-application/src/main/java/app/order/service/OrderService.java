@@ -7,7 +7,6 @@ import app.order.model.PaymentMethod;
 import app.order.repository.OrderItemRepository;
 import app.order.repository.OrderRepository;
 import app.product.model.Product;
-import app.product.model.ProductCategory;
 import app.product.service.ProductService;
 import app.user.model.User;
 import app.user.service.UserService;
@@ -37,7 +36,7 @@ public class OrderService {
         this.orderItemRepository = orderItemRepository;
     }
 
-    public void createOrder(OrderRequest orderRequest, UUID userId) {
+    public Order createOrder(OrderRequest orderRequest, UUID userId) {
 
         User user = userService.getUserById(userId);
 
@@ -60,6 +59,8 @@ public class OrderService {
         orderItemRepository.saveAll(orderItems);
 
         savedOrder.setOrderItems(orderItems);
+
+        return order;
     }
 
     public List<Order> findByOrderDateBefore(LocalDateTime twoYearsAgo) {
