@@ -3,6 +3,7 @@ package app.web.dto;
 import app.category.model.Category;
 import app.product.model.ProductCategory;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,13 +20,13 @@ import java.math.BigDecimal;
 public class AddProductRequest {
 
     @NotNull
-    @Size(min = 5, message = "Description must be at least 5 symbols.")
+    @Size(min = 6, message = "Description must be at least 6 symbols.")
     private String description;
 
-    @URL
+    @URL(message = "Must be a valid URL.")
     private String imageUrl;
 
-    @NotNull
+    @Positive(message = "Price must be positive.")
     private BigDecimal price;
 
     private Category category;

@@ -50,15 +50,23 @@ public class ProductController {
     }
 
     @PostMapping("/add-product")
-    public String addProduct(@Valid AddProductRequest addProductRequest, BindingResult bindingResult) {
+    public ModelAndView addProduct(@Valid AddProductRequest addProductRequest, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return "add-product";
+            List<Category> categories = productService.getAllCategories();
+            List<ProductCategory> productCategoryList = productService.getAllProductCategories();
+
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("add-product");
+            modelAndView.addObject("categories", categories);
+            modelAndView.addObject("productCategoryList", productCategoryList);
+
+            return modelAndView;
         }
 
         productService.addProduct(addProductRequest);
 
-        return "redirect:/products";
+        return new ModelAndView("redirect:/products");
     }
 
     @GetMapping("/add-category")
