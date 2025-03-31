@@ -1,6 +1,5 @@
 package app.web;
 
-
 import app.product.model.Product;
 import app.product.service.ProductService;
 import app.user.service.UserService;

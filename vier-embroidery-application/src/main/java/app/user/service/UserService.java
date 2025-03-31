@@ -11,7 +11,6 @@ import app.user.repository.UserRepository;
 import app.web.dto.ContactRequest;
 import app.web.dto.RegisterRequest;
 import app.web.dto.UserEditRequest;
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vier Embroidery</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/products.css">
 </head>
 <body>
 
@@ -17,15 +18,22 @@
     <section class="description">
         <h2>Открийте красиви бродерийни дизайни</h2>
         <p>Разгледайте нашите ръчно изработени колекции</p>
-        <a th:href="@{/women}" class="btn">Пазарувайте сега</a>
+        <a th:href="@{/womens}" class="btn">Пазарувайте сега</a>
     </section>
 
     <section class="featured-products">
         <h2>Наскоро добавени продукти</h2>
         <div class="product-grid">
-            <div th:each="cloth :${featuredProducts}" class="product" th:attr="data-name=${cloth.description}, data-price=${cloth.price}">
-                <img th:src="${cloth.imageUrl}" alt="Product Image 1">
+            <div th:each="cloth : ${featuredProducts}" class="product-container"
+                 th:attr="data-id=${cloth.id}, data-name=${cloth.description}, data-price=${cloth.price}, data-image=${cloth.imageUrl}">
+                <img th:src="${cloth.imageUrl}" alt="Product Image">
                 <h2 th:text="${cloth.description}"></h2>
+                <select class="size-dropdown">
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                </select>
                 <p th:text="${cloth.price + ' лв.'}"></p>
                 <button class="add-to-cart">Добави в количката</button>
             </div>

@@ -20,7 +20,7 @@ html, body {
 }
 
 .main-content {
-    background-image: url('/images/background_4.jpg');
+    background-image: url('/images/background.jpg');
     background-repeat: no-repeat;
     background-position: top center;
     background-size: cover;
