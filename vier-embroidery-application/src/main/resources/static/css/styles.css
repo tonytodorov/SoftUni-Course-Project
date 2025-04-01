@@ -101,6 +101,7 @@ nav a {
     text-decoration: none;
     border-radius: 5px;
     margin-top: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .featured-products {
@@ -138,6 +139,7 @@ nav a {
     color: white;
     text-decoration: none;
     border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .top-bar img {
@@ -167,6 +169,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     width: 50%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn:hover, button:hover {
@@ -220,7 +223,9 @@ p.alert-warning {
     margin: 20px auto;
 }
 
-.size-dropdown, #category, #productCategory {
+.size-dropdown, #category, #productCategory,
+#message, input[type="text"], input[type="password"], input[type="number"],
+input[type="email"], input[type="tel"] {
     padding: 10px;
     font-size: 14px;
     font-family: Arial, sans-serif;
@@ -231,13 +236,9 @@ p.alert-warning {
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.size-dropdown option, #category option, #productCategory option {
-    padding: 10px;
-    font-size: 14px;
-    background-color: #ffffff;
-}
-
-.size-dropdown:focus, #category:focus, #productCategory:focus {
+.size-dropdown:focus, #category:focus,
+#productCategory:focus, #message:focus, input[type="text"]:focus, input[type="password"]:focus,
+input[type="number"]:focus, input[type="email"]:focus, input[type="tel"]:focus {
     border-color: #a1621e;
     box-shadow: 0 0 5px rgba(161, 98, 30, 0.5);
 }
@@ -249,6 +250,7 @@ p.alert-warning {
     border-radius: 8px;
     font-size: 14px;
     padding: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .custom-confirm-button:hover {
@@ -263,6 +265,7 @@ p.alert-warning {
     border-radius: 8px;
     font-size: 14px;
     padding: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .custom-cancel-button:hover {

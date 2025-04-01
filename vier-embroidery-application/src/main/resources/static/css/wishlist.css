@@ -86,7 +86,7 @@ h1 {
     padding: 8px 12px;
     border-radius: 5px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .remove-btn:hover {

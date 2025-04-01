@@ -46,6 +46,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     width: 35%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
