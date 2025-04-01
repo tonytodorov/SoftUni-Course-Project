@@ -32,7 +32,8 @@ label {
 input[type="text"],
 input[type="tel"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="number"] {
     width: 80%;
     padding: 10px;
     font-size: 16px;

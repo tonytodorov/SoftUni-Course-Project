@@ -26,7 +26,6 @@ public class AddProductRequest {
     @URL(message = "Must be a valid URL.")
     private String imageUrl;
 
-    @Positive(message = "Price must be positive.")
     private BigDecimal price;
 
     private Category category;
