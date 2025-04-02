@@ -1,5 +1,6 @@
 package app.web.dto;
 
+import app.order.model.PaymentMethod;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -39,8 +40,7 @@ public class OrderRequest {
     @Size(max = 200, message = "Address must be max 200 symbols.")
     private String address;
 
-    @NotNull
-    private String paymentMethod;
+    private PaymentMethod paymentMethod;
 
     @NotNull
     private List<CartItemRequest> cartItems;

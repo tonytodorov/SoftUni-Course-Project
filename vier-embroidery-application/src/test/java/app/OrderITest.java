@@ -1,6 +1,7 @@
 package app;
 
 import app.order.model.Order;
+import app.order.model.PaymentMethod;
 import app.order.repository.OrderRepository;
 import app.order.service.OrderService;
 import app.product.model.Product;
@@ -71,7 +72,7 @@ public class OrderITest {
                 .phoneNumber("0888512291")
                 .city("Plovdiv")
                 .address("Test")
-                .paymentMethod("CASH_ON_DELIVERY")
+                .paymentMethod(PaymentMethod.CASH_ON_DELIVERY)
                 .cartItems(List.of(cartItem))
                 .build();
 

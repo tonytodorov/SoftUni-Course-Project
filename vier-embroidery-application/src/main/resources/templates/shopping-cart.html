@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +31,7 @@
     </table>
     <div class="cart-summary">
         <h2><span id="cart-total"></span></h2>
-        <form th:action="@{/order}" th:method="GET">
+        <form sec:authorize="isAuthenticated()" th:action="@{/order}" th:method="GET">
             <button type="submit" id="order-button" class="checkout-button" disabled>Поръчай</button>
         </form>
     </div>
