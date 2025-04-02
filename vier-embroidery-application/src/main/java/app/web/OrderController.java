@@ -44,8 +44,6 @@ public class OrderController {
     @PostMapping
     public String createOrder(@Valid @ModelAttribute("orderRequest") OrderRequest orderRequest, BindingResult bindingResult, @AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
 
-        log.info("Order");
-
         if (bindingResult.hasErrors()) {
             return "order";
         }
