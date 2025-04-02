@@ -2,12 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
     const orderSummaryItems = document.getElementById("order-summary-items");
-
-    if (!orderSummaryItems) {
-        return;
-    }
+    const submitOrderButton = document.querySelector(".submit-order-button");
 
     let totalAmount = 0;
+
+    orderSummaryItems.innerHTML = '';
 
     cartItems.forEach((item, index) => {
         orderSummaryItems.innerHTML += `
@@ -40,6 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
         sizeField.name = `cartItems[${index}].size`;
         sizeField.value = item.size;
         cartItemsContainer.appendChild(sizeField);
+
+        submitOrderButton.disabled = orderSummaryItems.querySelectorAll('tr').length === 0;
     });
 
     document.getElementById("order-total").textContent = `${totalAmount.toFixed(2)} лв.`;

@@ -31,7 +31,7 @@
             <p class="alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
 
             <label for="phone">Телефон</label>
-            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required th:field="*{phoneNumber}">
+            <input type="tel" id="phone" name="phone" required th:field="*{phoneNumber}">
             <p class="alert-warning" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></p>
 
             <label for="city">Град</label>
@@ -63,7 +63,9 @@
                     <th>Цена</th>
                 </tr>
                 </thead>
-                <tbody id="order-summary-items"></tbody>
+                <tbody id="order-summary-items">
+
+                </tbody>
             </table>
             <div class="order-summary-total">
                 <p>Общо: <span id="order-total"></span></p>
@@ -71,7 +73,7 @@
         </div>
 
         <div class="checkout-actions">
-            <button type="submit" class="submit-order-button">Поръчай сега</button>
+            <button type="submit" class="submit-order-button" disabled>Поръчай сега</button>
         </div>
 
         <div id="cart-items-container">

@@ -83,6 +83,11 @@ html, body {
     font-weight: bold;
 }
 
+.submit-order-button:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
 .checkout-actions {
     text-align: center;
     margin-top: 20px;

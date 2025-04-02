@@ -33,11 +33,11 @@ public class OrderRequest {
     private String phoneNumber;
 
     @NotNull
-    @Size(max = 50, message = "City must be max 50 symbols.")
+    @Size(max = 30, message = "City must be max 30 symbols.")
     private String city;
 
     @NotNull
-    @Size(max = 200, message = "Address must be max 200 symbols.")
+    @Size(max = 100, message = "Address must be max 100 symbols.")
     private String address;
 
     private PaymentMethod paymentMethod;
