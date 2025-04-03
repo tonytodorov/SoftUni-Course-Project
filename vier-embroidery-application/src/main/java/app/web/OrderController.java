@@ -4,7 +4,6 @@ import app.order.service.OrderService;
 import app.security.AuthenticationDetails;
 import app.web.dto.OrderRequest;
 import jakarta.validation.Valid;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -14,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.UUID;
 
-@Slf4j
 @Controller
 @RequestMapping("/order")
 public class OrderController {
